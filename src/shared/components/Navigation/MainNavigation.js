@@ -37,11 +37,12 @@ const MainNavigation = props => {
           <span />
         </button>
         <h1 className="main-navigation__title">
-          <Link to="/">Familija</Link>
+          <Link to="/">Co słychać?</Link>
         </h1>
         <nav className="main-navigation__header-nav">
           <NavLinks />
         </nav>
+        
       </MainHeader>
     </React.Fragment>
   );

@@ -10,8 +10,8 @@ const PlaceList = props => {
     return (
       <div className="place-list center">
         <Card>
-          <h2>No places found. Maybe create one?</h2>
-          <Button to="/places/new">Share Place</Button>
+          <h2>Jeszcze nie masz nowych postów. Może chcesz utworzyć?</h2>
+          <Button to="/places/new">Utwórz</Button>
         </Card>
       </div>
     );
@@ -33,6 +33,7 @@ const PlaceList = props => {
           date={place.date}
           creator={place.creator}
           name={place.creatorName}
+          comments={place.comments}
         />
       ))}
     </ul>

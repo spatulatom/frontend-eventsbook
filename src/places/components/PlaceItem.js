@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext} from 'react';
 
 import Card from '../../shared/components/UIElements/Card';
 import Button from '../../shared/components/FormElements/Button';
@@ -9,18 +9,23 @@ import LoadingSpinner from '../../shared/components/UIElements/LoadingSpinner';
 import { AuthContext } from '../../shared/context/auth-context';
 import { useHttpClient } from '../../shared/hooks/http-hook';
 import './PlaceItem.css';
+import Comments from './Comments';
+
 
 const PlaceItem = props => {
   const { isLoading, error, sendRequest, clearError } = useHttpClient();
   const auth = useContext(AuthContext);
   const [showMap, setShowMap] = useState(false);
   const [showConfirmModal, setShowConfirmModal] = useState(false);
- 
-  console.log('props.image',props.image)
-  let date;
-  if(props.date){
- date = props.date.toString().split(' ').splice(0,5).join(' ')
-  }
+  const [image, setFullImage] = useState(false);
+
+  // formatting new Date into shorter string, no 
+  // need for it now with backend formatting:
+
+  // let date;
+  //   if(props.date){
+  //     date=props.date;
+    // date = props.date.toString().split(' ').splice(0,5).join(' ')}
 
   const openMapHandler = () => setShowMap(true);
 
@@ -49,6 +54,41 @@ const PlaceItem = props => {
     } catch (err) {}
   };
 
+  const imageZoom = (event)=>{
+    console.log('Click!!',event.target);
+    setFullImage(prev=>!prev)
+  }
+
+  let displayImage;
+  if(props.image==='decoy-image'){
+
+    displayImage = 
+            <div className="post-item__info">
+                <p className="post-item_header">{props.date}, <span className="post-item_name" > wpis dodany przez:  {props.name}</span></p>
+                <p className="post-item_description">{props.description}</p>
+                
+            </div>
+  
+  }else{
+displayImage =  
+       <div>
+            <div className="place-item__image">
+              <img className={image? 'full_image' : ''}
+                src={props.image}
+                // src={`http://localhost:5000/${props.image}`}
+                alt={props.title}
+                onClick={imageZoom}/>
+            </div> 
+            <div className="place-item__info">
+           
+                <p className='place-item_description'>{props.description}</p>
+                <p ><span className='post-item_name'>Zdjęcie dodane przez: {props.name}</span></p>
+                <p>{props.date}</p>
+            </div>
+      </div>
+      }
+
+
   return (
     <React.Fragment>
       <ErrorModal error={error} onClear={clearError} />
@@ -58,7 +98,7 @@ const PlaceItem = props => {
         header={props.address}
         contentClass="place-item__modal-content"
         footerClass="place-item__modal-actions"
-        footer={<Button onClick={closeMapHandler}>CLOSE</Button>}
+        footer={<Button onClick={closeMapHandler}>ZAMKNIJ</Button>}
       >
         <div className="map-container">
           <Map center={props.coordinates} zoom={16} />
@@ -67,58 +107,65 @@ const PlaceItem = props => {
       <Modal
         show={showConfirmModal}
         onCancel={cancelDeleteHandler}
-        header="Are you sure?"
+        header="Jesteś pewien/a?"
         footerClass="place-item__modal-actions"
         footer={
           <React.Fragment>
             <Button inverse onClick={cancelDeleteHandler}>
-              CANCEL
+              ANULUJ
             </Button>
+            
             <Button danger onClick={confirmDeleteHandler}>
-              DELETE
+              USUŃ
             </Button>
           </React.Fragment>
         }
       >
-        <p>
+        {/* <p>
           Do you want to proceed and delete this place? Please note that it
           can't be undone thereafter.
-        </p>
+        </p> */}
+        <p>Czy chcesz kontynuować i usunąć zdjęcie/wpis? </p>
       </Modal>
       <li className="place-item">
         <Card className="place-item__content">
           {isLoading && <LoadingSpinner asOverlay />}
-          <div className="place-item__image">
-            <img
+         {/* <div className="place-item__image">
+            <img className={image? 'full_image' : ''}
             src={props.image}
               // src={`http://localhost:5000/${props.image}`}
               alt={props.title}
+              onClick={imageZoom}
             />
-          </div>
-          <div className="place-item__info">
-            <h2>{props.title}</h2>
-            <h3>{props.address}</h3>
-            <p>{props.description}</p>
-            <p>{date}</p>
-            <p>{props.name}</p>
-            {/* {date && <p>{date}</p>} */}
-          </div>
+          </div>  */}
+          {displayImage}
+
+          {/* <div className="place-item__info">
+           
+            <p className='place-item_description'>{props.description}</p>
+            <p >Dodane przez:  {props.name}</p>
+            <p>{props.date}</p>
+          </div> */}
+
           <div className="place-item__actions">
             {/* <Button inverse onClick={openMapHandler}>
               VIEW ON MAP
             </Button> */}
             {auth.userId === props.creatorId && (
-              <Button to={`/places/${props.id}`}>EDIT</Button>
+              <Button to={`/places/${props.id}`}>ZMIEŃ</Button>
             )}
 
             {auth.userId === props.creatorId && (
               <Button danger onClick={showDeleteWarningHandler}>
-                DELETE
+                USUŃ
               </Button>
             )}
           </div>
+             
         </Card>
+        
       </li>
+      <Comments id={props.id} comments={props.comments}/>
     </React.Fragment>
   );
 };

@@ -28,7 +28,7 @@ const NewPassword = () => {
 
   const passwordHandler = event=>{
       setPassword(event.target.value);
-    if(event.target.value.length>6){
+    if(event.target.value.length>5){
         setValid(true)
     }}
 const authSubmitHandler = async event => {
@@ -65,16 +65,16 @@ const authSubmitHandler = async event => {
       <ErrorModal error={error} onClear={clearError} />
       <Card className="authentication">
         {isLoading && <LoadingSpinner asOverlay />}
-        <h2>Input your new password (6 characters minimum):
+        <h2>Wpisz nowe hasło (min. 6 znaków):
         </h2>
         <hr />
         <form onSubmit={authSubmitHandler}>
           <input type={hidden ? 'password' : 'text'} id="pass" name="password"
           minlength="6" required value={password} onChange={passwordHandler}/>
-            <button  type="button" onClick={toggleShow}>Show / Hide</button>
+            <button  type="button" onClick={toggleShow}>Pokaż / Ukryj</button>
     
           <Button type="submit" disabled={!valid}>
-            UPDATE PASSWORD
+            ZMIEŃ HASŁO
           </Button>
         </form>
         

@@ -68,7 +68,7 @@ const Reset = () => {
         <form onSubmit={authSubmitHandler}>
           <input type="email" id="email" name="email" value={email} onChange={emailHandler}/>
           <Button type="submit" disabled={!valid}>
-            SEND
+            WYŚLIJ
           </Button>
         </form>
         

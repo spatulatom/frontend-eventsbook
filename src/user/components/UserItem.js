@@ -6,6 +6,16 @@ import Card from '../../shared/components/UIElements/Card';
 import './UserItem.css';
 
 const UserItem = props => {
+
+let places;
+if(props.placeCount===1){
+  places = 'Post'
+}else if(props.placeCount===0 || props.placeCount>4){
+  places = 'Postów'
+}else{
+  places = 'Posty'
+}
+
   return (
     <li className="user-item">
       <Card className="user-item__content">
@@ -16,7 +26,8 @@ const UserItem = props => {
           <div className="user-item__info">
             <h2>{props.name}</h2>
             <h3>
-              {props.placeCount} {props.placeCount === 1 ? 'Place' : 'Places'}
+              {/* {props.placeCount} {props.placeCount === 1 ? 'Post' : 'Postów'} */}
+              {props.placeCount} {places}
             </h3>
           </div>
         </Link>

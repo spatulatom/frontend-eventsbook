@@ -19,7 +19,8 @@ const UserPlaces = () => {
           `${process.env.REACT_APP_BACKEND_URL}/places/user/${userId}`
         );
         console.log(responseData.places,'places');
-        setLoadedPlaces(responseData.places);
+        let reverse = responseData.places.reverse();
+        setLoadedPlaces(reverse);
         
       } catch (err) {}
     };

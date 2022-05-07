@@ -14,14 +14,13 @@ const Welcome = () => {
       
       <Card className="authentication">
     
-        <h3>Enjoy the unlimited storage (5GB) and dump your 
-            every day photos here for your family and friends to see!!</h3>
+        <h3>Codzienne zdjęcia/wpisy.</h3>
         <hr />
         
         <Link to="/auth">
           <Button type="submit">
           
-          <h3>AUTHENTICATE</h3>
+          <h3>ZALOGUJ</h3>
         
           </Button>
           </Link>

@@ -11,34 +11,44 @@ const NavLinks = props => {
     <ul className="nav-links">
       {auth.isLoggedIn && (
         <li>
-          <NavLink to={"/allplaces"}>ALL PLACES</NavLink>
+          <NavLink to={"/allplaces"}>LINIA CZASU</NavLink>
         </li>
       )}
         {auth.isLoggedIn && (
       <li>
         <NavLink to="/users" exact>
-          ALL USERS
+          KTO JEST
         </NavLink>
       </li>
        )}
       {auth.isLoggedIn && (
         <li>
-          <NavLink to={`/${auth.userId}/places`}>MY PLACES</NavLink>
+          <NavLink to={`/${auth.userId}/places`}>MOJE</NavLink>
         </li>
       )}
       {auth.isLoggedIn && (
         <li>
-          <NavLink to="/places/new">ADD PLACE</NavLink>
+          <NavLink to="/places/new">DODAJ ZDJĘCIE</NavLink>
+        </li>
+      )}
+      {auth.isLoggedIn && (
+        <li>
+          <NavLink to="/places/new-post">DODAJ WPIS</NavLink>
+        </li>
+      )}
+      {auth.isLoggedIn && (
+        <li>
+          <NavLink to="/about">O NAS</NavLink>
         </li>
       )}
       {!auth.isLoggedIn && (
         <li>
-          <NavLink to="/auth">AUTHENTICATE</NavLink>
+          <NavLink to="/auth">ZALOGUJ</NavLink>
         </li>
       )}
       {auth.isLoggedIn && (
         <li>
-          <button onClick={auth.logout}>LOGOUT</button>
+          <button onClick={auth.logout}>WYLOGUJ</button>
         </li>
       )}
     </ul>

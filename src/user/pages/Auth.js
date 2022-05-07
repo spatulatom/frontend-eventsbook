@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, Fragment } from 'react';
 import {Link} from 'react-router-dom';
 
 import Card from '../../shared/components/UIElements/Card';
@@ -106,7 +106,7 @@ const Auth = () => {
       <ErrorModal error={error} onClear={clearError} />
       <Card className="authentication">
         {isLoading && <LoadingSpinner asOverlay />}
-        <h2>Login Required</h2>
+        <h2>Zaloguj/Utwórz profil:</h2>
         <hr />
         <form onSubmit={authSubmitHandler}>
           {!isLoginMode && (
@@ -114,7 +114,7 @@ const Auth = () => {
               element="input"
               id="name"
               type="text"
-              label="Your Name"
+              label="Nazwa użytkownika"
               validators={[VALIDATOR_REQUIRE()]}
               errorText="Please enter a name."
               onInput={inputHandler}
@@ -125,7 +125,7 @@ const Auth = () => {
               center
               id="image"
               onInput={inputHandler}
-              errorText="Please provide an image."
+              errorText="Wybierz zdjęcie."
             />
           )}
           <Input
@@ -141,21 +141,21 @@ const Auth = () => {
             element="input"
             id="password"
             type="password"
-            label="Password"
+            label="Hasło"
             validators={[VALIDATOR_MINLENGTH(6)]}
             errorText="Please enter a valid password, at least 6 characters."
             onInput={inputHandler}
           />
           <Button type="submit" disabled={!formState.isValid}>
-            {isLoginMode ? 'LOGIN' : 'SIGNUP'}
+            {isLoginMode ? 'ZALOGUJ' : 'UTWÓRZ PROFIL'}
           </Button>
         </form>
         <Button inverse onClick={switchModeHandler}>
-          SWITCH TO {isLoginMode ? 'SIGNUP' : 'LOGIN'}
+          ZMIEŃ NA {isLoginMode ? 'UTWÓRZ PROFIL' : 'ZALOGUJ'}
         </Button>
         
         <Link style={{ color: 'inherit', textDecoration: 'inherit'}}to="/reset">
-          <h5>Reset Password</h5>
+          <h5>Nowe hasło</h5>
           </Link>  
       </Card>
     </React.Fragment>

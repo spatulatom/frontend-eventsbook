@@ -17,6 +17,8 @@ import MainNavigation from './shared/components/Navigation/MainNavigation';
 import { AuthContext } from './shared/context/auth-context';
 import { useAuth } from './shared/hooks/auth-hook';
 import Welcome from './user/pages/WelcomePage';
+import NewPost from './places/pages/NewPost';
+import About from './user/pages/About';
 
 const App = () => {
   const { token, login, logout, userId } = useAuth();
@@ -38,8 +40,14 @@ const App = () => {
         <Route path="/places/new" exact>
           <NewPlace />
         </Route>
-        <Route path="/places/:placeId">
+        <Route path="/places/new-post" exact>
+          <NewPost />
+        </Route>
+        <Route path="/places/:placeId" exact>
           <UpdatePlace />
+        </Route>
+        <Route path="/about">
+          <About />
         </Route>
         <Redirect to="/allplaces" />
       </Switch>

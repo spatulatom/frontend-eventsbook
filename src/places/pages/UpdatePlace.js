@@ -25,8 +25,8 @@ const UpdatePlace = () => {
   const [formState, inputHandler, setFormData] = useForm(
     {
       title: {
-        value: '',
-        isValid: false
+        value: 'title',
+        isValid: true
       },
       description: {
         value: '',
@@ -103,7 +103,7 @@ const UpdatePlace = () => {
       <ErrorModal error={error} onClear={clearError} />
       {!isLoading && loadedPlace && (
         <form className="place-form" onSubmit={placeUpdateSubmitHandler}>
-          <Input
+          {/* <Input
             id="title"
             element="input"
             type="text"
@@ -113,11 +113,11 @@ const UpdatePlace = () => {
             onInput={inputHandler}
             initialValue={loadedPlace.title}
             initialValid={true}
-          />
+          /> */}
           <Input
             id="description"
             element="textarea"
-            label="Description"
+            label="Opis"
             validators={[VALIDATOR_MINLENGTH(5)]}
             errorText="Please enter a valid description (min. 5 characters)."
             onInput={inputHandler}
@@ -125,7 +125,7 @@ const UpdatePlace = () => {
             initialValid={true}
           />
           <Button type="submit" disabled={!formState.isValid}>
-            UPDATE PLACE
+            UAKTUALNIJ
           </Button>
         </form>
       )}

@@ -7,9 +7,9 @@ const SuccessModal = props => {
   return (
     <Modal
       onCancel={props.onClear}
-      header="Success!"
+      header="Sukces!"
       show={!!props.success}
-      footer={<Button onClick={props.onClear}>Okay</Button>}
+      footer={<Button onClick={props.onClear}>Ok</Button>}
     >
       <p>{props.success}</p>
     </Modal>
