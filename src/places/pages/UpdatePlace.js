@@ -43,19 +43,19 @@ const UpdatePlace = () => {
           `${process.env.REACT_APP_BACKEND_URL}/places/${placeId}`
         );
         setLoadedPlace(responseData.place);
-        setFormData(
-          {
-            title: {
-              value: responseData.place.title,
-              isValid: true
-            },
-            description: {
-              value: responseData.place.description,
-              isValid: true
-            }
-          },
-          true
-        );
+        // setFormData(
+        //   {
+        //     title: {
+        //       value: responseData.place.title,
+        //       isValid: true
+        //     },
+        //     description: {
+        //       value: responseData.place.description,
+        //       isValid: true
+        //     }
+        //   },
+        //   true
+        // );
       } catch (err) {}
     };
     fetchPlace();
@@ -64,7 +64,7 @@ const UpdatePlace = () => {
   const placeUpdateSubmitHandler = async event => {
     event.preventDefault();
     try {
-      await sendRequest(
+     const request= await sendRequest(
         `${process.env.REACT_APP_BACKEND_URL}/places/${placeId}`,
         'PATCH',
         JSON.stringify({
@@ -76,6 +76,10 @@ const UpdatePlace = () => {
           Authorization: 'Bearer ' + auth.token
         }
       );
+      let response = request.place;
+      console.log('place', response)
+
+
       history.push('/' + auth.userId + '/places');
     } catch (err) {}
   };
@@ -101,6 +105,8 @@ const UpdatePlace = () => {
   return (
     <React.Fragment>
       <ErrorModal error={error} onClear={clearError} />
+      {/* we are using this conditional rendering here as we want to wait for our 
+      // fetched data only then we want input rendered */}
       {!isLoading && loadedPlace && (
         <form className="place-form" onSubmit={placeUpdateSubmitHandler}>
           {/* <Input
@@ -122,6 +128,10 @@ const UpdatePlace = () => {
             errorText="Please enter a valid description (min. 5 characters)."
             onInput={inputHandler}
             initialValue={loadedPlace.description}
+            // we can not set initialValue ad assign to it formState.inputs.description.value
+            // why? because i dont know it shoul work becuse it is set with lodadPlace in 
+            // useEffect by the same fetched data, but it dosen relly set it, why?
+            // initialValue={formState.inputs.description.value}
             initialValid={true}
           />
           <Button type="submit" disabled={!formState.isValid}>

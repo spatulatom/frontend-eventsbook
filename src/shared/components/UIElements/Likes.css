@@ -1,0 +1,41 @@
+.fa-solid{
+     color: aliceblue;
+     transform: scale(1.5);
+     transition: all 0.2s linear;
+     }
+
+.fa-solid:hover{
+transform: scale(2.0);
+}
+
+
+.like{
+    display: inline-block;
+    padding: 0.4rem;
+    color: white;
+}
+
+.like.remove .fa-solid{
+    color: red;
+    /* transition: all 0.3s linear; */
+}
+/* .like.remove .fa-solid.hover{
+    transform: scale(2);
+}
+.like.add .fa-solid{
+    transition: all 0.3s linear;
+}
+.like.add .fa-solid.hover{
+    transform: scale(2);
+} */
+
+.like.count{ 
+    padding-right: 1rem;
+}
+.like.users{
+    padding: 0rem;
+}
+
+.like.users:last-child .coma{
+    display: none;
+}

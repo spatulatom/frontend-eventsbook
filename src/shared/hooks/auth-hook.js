@@ -6,10 +6,13 @@ export const useAuth = () => {
   const [token, setToken] = useState(false);
   const [tokenExpirationDate, setTokenExpirationDate] = useState();
   const [userId, setUserId] = useState(false);
+  const [userName, setName] = useState(false);
 
-  const login = useCallback((uid, token, expirationDate) => {
+  const login = useCallback((uid, token, name, expirationDate) => {
+    console.log('auth-hook', name)
     setToken(token);
     setUserId(uid);
+    setName(name);
     const tokenExpirationDate =
       expirationDate || new Date(new Date().getTime() + 8760000 * 60 * 60);
     setTokenExpirationDate(tokenExpirationDate);
@@ -46,9 +49,10 @@ export const useAuth = () => {
       storedData.token &&
       new Date(storedData.expiration) > new Date()
     ) {
-      login(storedData.userId, storedData.token, new Date(storedData.expiration));
+      login(storedData.userId, storedData.token,null, new Date(storedData.expiration));
     }
   }, [login]);
+  console.log('auth-hook2', userName)
 
-  return { token, login, logout, userId };
+  return { token, login, logout, userId, userName };
 };

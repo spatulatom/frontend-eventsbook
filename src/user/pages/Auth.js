@@ -62,6 +62,8 @@ const Auth = () => {
         false
       );
     }
+    // if you have multiple state changes in one synchronous function
+    // React will batch them together and perform
     setIsLoginMode(prevMode => !prevMode);
   };
 
@@ -81,7 +83,8 @@ const Auth = () => {
             'Content-Type': 'application/json'
           }
         );
-        auth.login(responseData.userId, responseData.token);
+        console.log('auth', responseData.name);
+        auth.login(responseData.userId, responseData.token, responseData.name);
       } catch (err) {}
     } else {
       try {
@@ -95,8 +98,8 @@ const Auth = () => {
           'POST',
           formData
         );
-
-        auth.login(responseData.userId, responseData.token);
+console.log('auth', responseData.name);
+        auth.login(responseData.userId, responseData.token, responseData.name);
       } catch (err) {}
     }
   };
@@ -114,7 +117,7 @@ const Auth = () => {
               element="input"
               id="name"
               type="text"
-              label="Nazwa użytkownika"
+              label="*Nazwa użytkownika"
               validators={[VALIDATOR_REQUIRE()]}
               errorText="Please enter a name."
               onInput={inputHandler}
@@ -125,14 +128,14 @@ const Auth = () => {
               center
               id="image"
               onInput={inputHandler}
-              errorText="Wybierz zdjęcie."
+              // errorText="Wybierz zdjęcie."
             />
           )}
           <Input
             element="input"
             id="email"
             type="email"
-            label="E-Mail"
+            label="*E-Mail"
             validators={[VALIDATOR_EMAIL()]}
             errorText="Please enter a valid email address."
             onInput={inputHandler}
@@ -141,11 +144,12 @@ const Auth = () => {
             element="input"
             id="password"
             type="password"
-            label="Hasło"
+            label="*Hasło"
             validators={[VALIDATOR_MINLENGTH(6)]}
             errorText="Please enter a valid password, at least 6 characters."
             onInput={inputHandler}
           />
+          
           <Button type="submit" disabled={!formState.isValid}>
             {isLoginMode ? 'ZALOGUJ' : 'UTWÓRZ PROFIL'}
           </Button>
@@ -157,6 +161,7 @@ const Auth = () => {
         <Link style={{ color: 'inherit', textDecoration: 'inherit'}}to="/reset">
           <h5>Nowe hasło</h5>
           </Link>  
+          <h4>* pola wymagane do utworzenia profilu/logowania.</h4>
       </Card>
     </React.Fragment>
   );

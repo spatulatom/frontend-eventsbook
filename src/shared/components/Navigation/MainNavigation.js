@@ -19,6 +19,9 @@ const MainNavigation = props => {
   };
 
   return (
+    // React.Fragment allows us to return one root element which is accually
+    // not React limitation but JavaScript limitation because we can not return 1 2; 
+    // -two numers like that
     <React.Fragment>
       {drawerIsOpen && <Backdrop onClick={closeDrawerHandler} />}
       <SideDrawer show={drawerIsOpen} onClick={closeDrawerHandler}>

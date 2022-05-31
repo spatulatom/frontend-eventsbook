@@ -39,6 +39,28 @@ const NewPlace = () => {
     },
     false
   );
+  // originally state looke like this before we got the useForm hook
+  // const [formState, inputHandler] = useForm(
+  //   {
+  //  inputs:{   title: {
+  //       value: 'title',
+  //       isValid: true
+  //     },
+  //     description: {
+  //       value: '',
+  //       isValid: false
+  //     },
+  //     address: {
+  //       value: 'adress',
+  //       isValid: true
+  //     },
+  //     image: {
+  //       value: null,
+  //       isValid: false
+  //     }
+  //   }},
+  //   isValid:false
+  // );
 
   const history = useHistory();
 
@@ -77,6 +99,9 @@ const NewPlace = () => {
           label="Opis"
           validators={[VALIDATOR_MINLENGTH(5)]}
           errorText="Wpisz wyżej minimum 5 znaków."
+          // onInput cuold be called anuthing, it only passes function dosent really 
+          // do anything like onInput or onChange inside of Input element where 
+          // event.target.value is gathered 
           onInput={inputHandler}
         />
         {/* <Input

@@ -17,6 +17,7 @@ const ImageUpload = props => {
     const fileReader = new FileReader();
     fileReader.onload = () => {
       setPreviewUrl(fileReader.result);
+
     };
     fileReader.readAsDataURL(file);
   }, [file]);
@@ -49,12 +50,17 @@ const ImageUpload = props => {
         type="file"
         accept=".jpg,.png,.jpeg"
         onChange={pickedHandler}
+        // somehow the 'choose file' that normally shows with type='file' is 
+        // disabled here and useRef taps into it
       />
       <div className={`image-upload ${props.center && 'center'}`}>
         <div className="image-upload__preview">
           {previewUrl && <img src={previewUrl} alt="Preview" />}
-          {!previewUrl && <p>Wybierz zdjęcie.</p>}
+
+          {!previewUrl && <p> *Wybierz zdjęcie.</p>}
+          
         </div>
+        
         <Button type="button" onClick={pickImageHandler}>
           WYBIERZ ZDJĘCIE
         </Button>

@@ -1,4 +1,7 @@
 import React from 'react';
+// react-dom-router has named imports so we have to import multiple 
+// specific things by their name (in contrac to for example import
+// Rwact from 'react')
 import {
   BrowserRouter as Router,
   Route,
@@ -21,16 +24,26 @@ import NewPost from './places/pages/NewPost';
 import About from './user/pages/About';
 
 const App = () => {
-  const { token, login, logout, userId } = useAuth();
+  const { token, login, logout, userId, userName } = useAuth();
 
   let routes;
+  console.log('app.js', userName)
 
   if (token) {
     routes = (
       <Switch>
+        {/* Switch instructs our Router that whenever it 
+        encounter a fitting route it should not evalute there after, 
+        as the default behaviour is to do so, we could for example have 
+        <footer> after our routes and we would wnt it rendered- that why 
+        the default;
+        also there shouldnt be nothing betewen Routes and Switch
+        like for example React.Fragment*/}
         <Route path="/users" exact>
           <Users />
         </Route>
+        {/* <Route path="/users" component={Users}/> */}
+        
         <Route path="/:userId/places" exact>
           <UserPlaces />
         </Route>
@@ -40,6 +53,8 @@ const App = () => {
         <Route path="/places/new" exact>
           <NewPlace />
         </Route>
+        {/* apparently even with exact the order matters, like the following 
+        two routes should not be swapped */}
         <Route path="/places/new-post" exact>
           <NewPost />
         </Route>
@@ -79,16 +94,33 @@ const App = () => {
   }
 
   return (
+    // we wrap the parts of our  application that should be able to use that context
+    //  with it, and so that AuthContext object that we created in auth-context.js
+    // turns out to have a property .Provider that is a React component, 
+    // so we use this component and wrap our entire Router with it;
+    // so every  componet inside there has access to this AuthContext, 
+    // the Provider also takes a value prop and here we bind the object that we 
+    // initilized with our AuthContext, we bind it to a new value, and 
+    // whenever this value here changes all the componets that listen to our Context
+    // will rerender - mind you not all the componets that are wrapped by AuthContext 
+    // but only those that are some Context code added 
+    // So now we can managae some state here in the app component and bind this to the value
+    // of our Context, and hence when the state here changes  and the value changes  and 
+    // this component rerenders becuae our state changed  we will be able to rerender  or update
+    // the components that are 'interested' in our Context
     <AuthContext.Provider
       value={{
         isLoggedIn: !!token,
         token: token,
         userId: userId,
+        name: userName,
         login: login,
         logout: logout
       }}
     >
       <Router>
+        {/* MainNavigation is rendered above the route where the Switch applies, its always
+        visible*/}
         <MainNavigation />
         <main>{routes}</main>
       </Router>

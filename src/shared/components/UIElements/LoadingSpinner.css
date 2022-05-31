@@ -3,8 +3,13 @@
   width: 64px;
   height: 64px;
 }
-
-.lds-dual-ring:after {
+ /* basically it works even without :: after ?, 
+ secondly we dont need to trigger animation 
+ like transiton that has to be 'called' 
+ somewhere, like this class is active all the time 
+ and when LoadingSpinner is rendered itall these
+ css classes are applied */
+.lds-dual-ring::after {
   content: ' ';
   display: block;
   width: 46px;

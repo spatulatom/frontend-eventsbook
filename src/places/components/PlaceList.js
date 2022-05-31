@@ -34,6 +34,8 @@ const PlaceList = props => {
           creator={place.creator}
           name={place.creatorName}
           comments={place.comments}
+          creatorImage={place.creatorImage}
+          likes={place.likes}
         />
       ))}
     </ul>

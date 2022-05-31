@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect, useState, useReducer } from 'react';
 import { useHistory } from 'react-router-dom';
 
 import Input from '../../shared/components/FormElements/Input';
@@ -18,7 +18,9 @@ import './Comments.css';
 
 const Comments = (props) => {
   const auth = useContext(AuthContext);
+  const [submitted, setSubmitted] = useState(false);
   const { isLoading, error, sendRequest, clearError } = useHttpClient();
+  const [comments, setComments]= useState(props.comments);
   const [formState, inputHandler] = useForm(
     {
       title: {
@@ -41,13 +43,14 @@ const Comments = (props) => {
     false
   );
 
- 
-  const history = useHistory();
 
+  // const history = useHistory();
+  
+console.log('isLoading', isLoading)
   const commentSubmitHandler = async event => {
     event.preventDefault();
     try {
-      await sendRequest(
+     const responeData = await sendRequest(
         `${process.env.REACT_APP_BACKEND_URL}/comments`,
         'POST',
         JSON.stringify({
@@ -59,24 +62,44 @@ const Comments = (props) => {
           Authorization: 'Bearer ' + auth.token
         }
       );
-      history.push('/');
+      let response = responeData;
+      setComments([...comments, response]);    
+      inputHandler("title", '', false);
+      console.log( 'response', response);
+      setSubmitted(prev=>!prev)
+      setTimeout(()=>{
+        setSubmitted(prev=>!prev)
+      }, 2000)
+
+      // history.push('/');
     } catch (err) {}
   };
-  console.log('comments', props.comments)
   
-
+console.log('comment', comments)
   let comment;
-  if(props.comments.length===0){
-    comment= <p className="no-comments">Nikt jeszcze nie dodał komentarza.</p>
+  if(comments.length===0){
+    // comment= <p className="no-comments">Nikt jeszcze nie dodał komentarza.</p>
+    comment='';
   }
 
   return (
     <React.Fragment>
       <ErrorModal error={error} onClear={clearError}/>
       <form className="place-form-comments" onSubmit={commentSubmitHandler}>
-        {isLoading && <LoadingSpinner asOverlay />}
+        {isLoading && <LoadingSpinner asOverlay/>}
         
-        <Input
+        {/* <h4 className="comments-header">Komentarze:</h4> */}
+        {comments.map(comment=>
+            <div>
+                <p className= "comments">{comment.date}, <span className='comments_name'>napisał/a {comment.addedBy}:</span> </p>
+              
+                  <p className = "comments"> <span className='comments-description'> ━  {comment.description}</span></p>
+            </div>
+
+           )}
+            {comment}
+
+            <Input
           id="title"
           element="input"
           type="text"
@@ -84,21 +107,13 @@ const Comments = (props) => {
           validators={[VALIDATOR_MINLENGTH(2)]}
           errorText="Wpisz minimum dwa znaki."
           onInput={inputHandler}
+          formSubmitted={submitted}
+        
         />
        
         <Button type="submit" disabled={!formState.isValid}>
-          DODAJ KOMENTARZ
+          DODAJ
         </Button>
-        <h4 className="comments-header">Komentarze:</h4>
-        {props.comments.map(comment=>
-            <div>
-                <p className= "comments">{comment.date}, <span className='comments_name'>skomentował/a {comment.addedBy}:</span> </p>
-              
-                  <p className = "comments"> <span className='comments-description'> --- {comment.description}</span></p>
-            </div>
-
-           )}
-            {comment}
       </form>
       
       
@@ -107,3 +122,4 @@ const Comments = (props) => {
 };
 
 export default Comments;
+// thanks

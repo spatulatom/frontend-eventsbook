@@ -13,7 +13,9 @@
 .nav-links li {
   margin: 1rem;
 }
-
+ /* somewhat these link remian actibe after they have been clicked
+ which ight be a reatc thing? in my-portfolio mobile nav i needed spaccial 
+ function for it */
 .nav-links a {
   border: 1px solid transparent;
   color: #292929;
@@ -23,7 +25,8 @@
 
 .nav-links a:hover,
 .nav-links a:active,
-.nav-links a.active {
+.nav-links a.active 
+{
   background: #f8df00;
   border-color: #292929;
   color: #292929;
