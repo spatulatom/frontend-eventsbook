@@ -1,8 +1,6 @@
 .place-item {
   margin: .3rem 0 0.2rem 0;
-  background-color: #212428;
-  /* padding-top: 5rem; */
-  /* border-top: 2px solid pink; */
+  /* background-color: #212428; */
 }
 
 .place-item__content {

@@ -40,7 +40,7 @@ const MainNavigation = props => {
           <span />
         </button>
         <h1 className="main-navigation__title">
-          <Link to="/">Co słychać?</Link>
+          <Link to="/">RODZINKA.PL</Link>
         </h1>
         <nav className="main-navigation__header-nav">
           <NavLinks />
