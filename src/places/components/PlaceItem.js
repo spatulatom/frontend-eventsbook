@@ -213,11 +213,12 @@ displayImage =
               </Button>
             )}
           </div>
+          <Comments id={props.id} comments={props.comments}/>
              
         </Card>
         
       </li>
-      <Comments id={props.id} comments={props.comments}/>
+      {/* <Comments id={props.id} comments={props.comments}/> */}
     </React.Fragment>
   );
 };

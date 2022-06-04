@@ -45,7 +45,7 @@ const ModalOverlay = props => {
 const Modal = props => {
   const modal = (
     <React.Fragment>
-      {props.show && <Backdrop onClick={props.onCancel} />}
+      {props.show && <Backdrop color={props.backdropClass} onClick={props.onCancel} />}
       <CSSTransition
         in={props.show}
         mountOnEnter

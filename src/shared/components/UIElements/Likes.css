@@ -24,6 +24,7 @@
   display: inline-block;
   padding: 0.2rem 1rem 0.2rem .7rem;
   color: white;
+  margin:0;
 }
 
 .display-none{
@@ -33,12 +34,18 @@
 .like.count{ 
     padding-right: 1rem;
     padding-left: 0rem;
+    
 }
 .like.users{
     padding: 0rem;
+    margin-right: 0.4rem;
     color: #e3638c;
 }
 
 .like.users:last-child .coma{
     display: none;
+}
+.coma{
+  margin:0;
+  padding: 0;
 }

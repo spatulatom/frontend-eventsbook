@@ -7,15 +7,15 @@
   background: white;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26);
   border-radius: 8px;
+  max-height: 90vh;
+  color: black;
 }
-
 .modal__header {
   width: 100%;
   padding: 1rem 0.5rem;
   background: #2a006e;
   color: white;
 }
-
 .modal__header h2 {
   margin: 0.5rem;
 }
@@ -23,7 +23,6 @@
 .modal__content {
   padding: 1rem 0.5rem;
 }
-
 .modal__footer {
   padding: 1rem 0.5rem;
 }
@@ -33,6 +32,7 @@
     left: calc(50% - 20rem);
     width: 40rem;
   }
+  
 }
 
 .modal-enter {
@@ -55,4 +55,27 @@
   transform: translateY(-10rem);
   opacity: 0;
   transition: all 200ms;
+}
+  
+/* styling for sign up page: */
+
+.modal.create-account{
+  top: 5vh;
+  max-width: 30rem;
+}
+@media (min-width: 768px) {
+  .modal.create-account {
+    left: calc(50% - 15rem);
+    width: 30rem;
+  }
+  
+}
+ .modal__header.create-account{
+  display: none;
+}
+.modal__content.create-account{
+  padding:0
+}
+.modal__footer.create-account{
+  display: none;
 }

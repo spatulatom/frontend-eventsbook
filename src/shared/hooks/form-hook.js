@@ -54,7 +54,7 @@ const formReducer = (state, action) => {
           // the csde since we have onChange in action and we changin state not only based on 
           // input field(one propery) but every keystroke, so there is always all but one
           // properties that we loop throuh the state and they are not in input?handelr- inputId
-          // so : !inputId === action.inputId and we go here baby
+          // so : !inputId === action.inputId and we go here 
           formIsValid = formIsValid && state.inputs[inputId].isValid;
         }
       }

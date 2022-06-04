@@ -22,6 +22,7 @@ import { useAuth } from './shared/hooks/auth-hook';
 import Welcome from './user/pages/WelcomePage';
 import NewPost from './places/pages/NewPost';
 import About from './user/pages/About';
+import Login from './user/pages/Login';
 
 const App = () => {
   const { token, login, logout, userId, userName } = useAuth();
@@ -80,13 +81,17 @@ const App = () => {
           <Welcome />
         </Route>
         <Route path="/auth" exact>
-          <Auth />
+          {/* <Auth /> */}
+          <Login/>
         </Route>
         <Route path="/reset" exact>
           <Reset/>
         </Route>
         <Route path="/new-password/:token" exact>
           <NewPassword/>
+        </Route>
+        <Route path="/login" exact>
+          <Login/>
         </Route>
         <Redirect to="/" />
       </Switch>

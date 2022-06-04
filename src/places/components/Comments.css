@@ -1,6 +1,6 @@
 .place-form-comments {
-  position: relative;
-  bottom: 27px;
+  /* position: relative;
+  bottom: 27px; */
   list-style: none;
   margin: 0 auto;
   padding: 1rem 1rem;
@@ -8,7 +8,7 @@
   width: 100%;
   max-width: 40rem;
   /* box-shadow: 0 0px 8px rgba(0, 0, 0, 0.26); */
-  border-radius: 0 0 6px 6px;
+  /* border-radius: 0 0 6px 6px; */
   background: #212428;
   /* border-bottom: 10px solid rgb(81, 80, 80); */
   /* text-align: center; */

@@ -1,3 +1,9 @@
+.auth-whole-page{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+}
+
 .authentication__header {
   color: white;
   text-align: center;
@@ -6,30 +12,49 @@
 .authentication {
   width: 90%;
   max-width: 25rem;
-  margin: 7rem auto;
+  margin: 7rem 1rem 1rem 1rem;
   text-align: center;
+  background-color: white;
+}
+@media(max-width: 800px){
+  .authentication{
+    margin: 1rem;
+    margin-bottom: 4rem;
+  }
+}
+.authentication.content{
+  text-align: left;
+  background: transparent;
+  box-shadow: none;
+}
+.authentication.content h1{
+  color: #ff4382;
+  font-size: 3rem;
 }
 
 .authentication form {
   margin-bottom: 1rem;
 }
-
+.authentication p{
+  color: white;
+  font-size: 1.3rem;
+}
 h5{
- 
-  color: red;
-  text-decoration: none;
+ margin: 1rem;
+ color: #ff4382;
+ font-weight: 600;
 }
 h5:hover{
- 
-  background-color: red;
-  color: white;
+  
+  color: black;
 }
-input{
-  font-size: inherit;
-  margin-right: 5px;
-  margin-bottom: 10px;
-padding: 5px
+hr{
+  margin-bottom: 1.5rem;
 }
-h4{
-  color:rgb(137, 134, 134)
+.authentication button{
+  width: 100%;
+  padding: .8rem;
+}
+.authentication .form-control:not(:first-child){
+  margin: 1.4rem 0;
 }
