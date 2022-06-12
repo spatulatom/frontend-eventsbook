@@ -1,16 +1,17 @@
 .button {
   font: inherit;
-  font-size: 1.1rem;
+  font-size: 1.2rem;
   font-weight: 700;
   padding: 0.5rem 1.5rem;
-  border: 1px solid white;
-  border-radius: 6px;
-  background: #e3638c;
+  border: 1px solid rgb(153, 150, 150);
+  border-radius: 4px;
+  background: var(--my-color);
   color: white;
   cursor: pointer;
   text-decoration: none;
   display: inline-block;
   /* width: 100%; */
+  margin: 0.5rem;
 }
 
 .button:focus {
@@ -20,19 +21,19 @@
 .button:hover,
 .button:active {
   background: white;
-  color: #e3638c;
-  border-color: #e3638c;
+  color: var(--my-color);
+  border-color: var(--my-color);
 }
 
 .button--inverse {
-  background: #e3638c;
+  background: var(--my-color);
   border-color: white;
-  border: 1px solid #e3638c;
+  border: 1px solid var(--my-color);
 }
 
 .button--inverse:hover,
 .button--inverse:active {
-  color: #e3638c;
+  color: var(--my-color);
   background: white;
 }
 
@@ -40,12 +41,12 @@
    background: white;
   color: #ff0055;
   background: #212428;
-  border-color: #e3638c;
+  border-color: var(--my-color);
 }
 
 .button--danger:hover,
 .button--danger:active {
-  background: #e3638c;
+  background: var(--my-color);
   border-color: white;
 }
 

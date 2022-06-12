@@ -80,15 +80,12 @@ const removeLikesHandler = ()=>{
         {/* when we had {like? <span1> : span2} on moble devices hoverd properties were staying on even afeter switching 
         to another <span>, i think the reason fo that was that those spans were interpreted as the same element and the hover 
         simply continued working*/}
-       <span className={!like?"like add":"display-none"}><i onClick={addLikesHandler} className="fa-solid fa-heart"></i></span> 
-        <span className={like?"like remove":"display-none"}><i onClick={removeLikesHandler} className="fa-solid fa-heart red"></i></span>
-        
-        <span className="like count">Polubienia: {likes.length}</span>
+      <span className={!like?"likes__add":"display-none"}><i onClick={addLikesHandler} className="fa-solid fa-thumbs-up"></i></span> 
+      <span className={like?"likes__remove":"display-none"}><i onClick={removeLikesHandler} className="fa-solid fa-thumbs-up"></i></span>
+      <span className="likes__count">Likes: {likes.length}</span>
         {likes.map(like=>
-            <span className="like users">{like.name}<span className="coma">,</span></span>
+            <span className="likes__users" key={like.userId} >{like.name}<span className="likes__coma">,</span></span>
         )}
-        
-    
     </div>
   );
 };

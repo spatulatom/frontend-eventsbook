@@ -2,6 +2,7 @@
   padding: 0.5rem;
 }
 
+
 .fa-solid{
   color: aliceblue;
   transform: scale(1.5);
@@ -12,15 +13,16 @@
   transform: scale(2.2);
 }
 
-.fa-solid.red{
- color: #e3638c;
+.likes__remove .fa-solid{
+ color: var(--my-color);
 }
 
 .fa-solid:hover{
   transform: scale(2.0);
 }
 
-.like{
+.likes__add,
+.likes__remove{
   display: inline-block;
   padding: 0.2rem 1rem 0.2rem .7rem;
   color: white;
@@ -31,21 +33,21 @@
     display: none;
 }
 
-.like.count{ 
+.likes__count{ 
     padding-right: 1rem;
     padding-left: 0rem;
     
 }
-.like.users{
+.likes__users{
     padding: 0rem;
     margin-right: 0.4rem;
-    color: #e3638c;
+    color: white;
 }
 
-.like.users:last-child .coma{
+.likes__users:last-child .likes__coma{
     display: none;
 }
-.coma{
+.likes__coma{
   margin:0;
   padding: 0;
 }

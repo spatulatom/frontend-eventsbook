@@ -6,6 +6,11 @@ import Button from '../../shared/components/FormElements/Button';
 import ErrorModal from '../../shared/components/UIElements/ErrorModal';
 import LoadingSpinner from '../../shared/components/UIElements/LoadingSpinner';
 import SuccessModal from '../../shared/components/UIElements/SuccessModal';
+import { useForm } from '../../shared/hooks/form-hook';
+import Input from '../../shared/components/FormElements/Input';
+import {
+  VALIDATOR_EMAIL
+} from '../../shared/util/validators';
 
 
 import { useHttpClient } from '../../shared/hooks/http-hook';
@@ -17,6 +22,16 @@ const Reset = () => {
   const [valid, setValid] = useState(false);
   const { isLoading, error, sendRequest, clearError } = useHttpClient();
   const [success, setSuccess]= useState();
+  const [formState, inputHandler] = useForm(
+    {
+      email: {
+        value: '',
+        isValid: false
+      },
+    },
+    false
+  );
+
 
   
 
@@ -40,7 +55,7 @@ const Reset = () => {
           'POST',
           
           JSON.stringify({
-            email: email,
+            email: formState.inputs.email.value,
             
           }),
           {
@@ -60,16 +75,25 @@ const Reset = () => {
     <React.Fragment>
       <SuccessModal success={success} onClear={clearSuccess}/>  
       <ErrorModal error={error} onClear={clearError} />
-      <Card className="authentication">
+      <Card className="reset">
         {isLoading && <LoadingSpinner asOverlay />}
-        <h2>E-mail:
-        </h2>
+        <h4>Enter your registration email adress:
+        </h4>
         <hr />
         <form onSubmit={authSubmitHandler}>
-          <input type="email" id="email" name="email" value={email} onChange={emailHandler}/>
-          <Button type="submit" disabled={!valid}>
-            WYŚLIJ
-          </Button>
+        <Input
+            element="input"
+            id="email"
+            type="email"
+            // label="*E-Mail"
+            validators={[VALIDATOR_EMAIL()]}
+            errorText="Please enter a valid email address."
+            onInput={inputHandler}
+            placeholder="Email adress"
+          />
+        <Button type="submit" disabled={!formState.isValid}>
+            Send
+        </Button>
         </form>
         
         

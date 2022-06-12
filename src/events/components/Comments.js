@@ -27,26 +27,12 @@ const Comments = (props) => {
         value: '',
         isValid: false
       },
-      description: {
-        value: 'description',
-        isValid: true
-      },
-      address: {
-        value: 'adress',
-        isValid: true
-      },
-      image: {
-        value: null,
-        isValid: true
-      }
+    
     },
     false
   );
-
-
-  // const history = useHistory();
-  
-console.log('isLoading', isLoading)
+// const history = useHistory();
+  console.log('isLoading', isLoading)
   const commentSubmitHandler = async event => {
     event.preventDefault();
     try {
@@ -75,48 +61,37 @@ console.log('isLoading', isLoading)
     } catch (err) {}
   };
   
-console.log('comment', comments)
-  let comment;
-  if(comments.length===0){
-    // comment= <p className="no-comments">Nikt jeszcze nie dodał komentarza.</p>
-    comment='';
+let comment;
+if(comments.length===0){
+  comment = <p className="comments__no-comments">Be the first one to post a comment.</p>
   }
 
   return (
     <React.Fragment>
       <ErrorModal error={error} onClear={clearError}/>
-      <form className="place-form-comments" onSubmit={commentSubmitHandler}>
+      <form className="comments" onSubmit={commentSubmitHandler}>
         {isLoading && <LoadingSpinner asOverlay/>}
-        
-        {/* <h4 className="comments-header">Komentarze:</h4> */}
         {comments.map(comment=>
-            <div>
-                <p className= "comments">{comment.date}, <span className='comments_name'>napisał/a {comment.addedBy}:</span> </p>
-              
-                  <p className = "comments"> <span className='comments-description'> ━  {comment.description}</span></p>
-            </div>
-
-           )}
-            {comment}
-
-            <Input
+          <div key={comment.id}>
+            <p className="comments__date">{comment.date}, added by: {comment.addedBy}</p>
+            <p className="comments__description"> ━ {comment.description}</p>
+          </div>
+        )}
+          {comment}
+        <Input
           id="title"
           element="input"
           type="text"
-          label="Skomentuj:"
+          label="Comment:"
           validators={[VALIDATOR_MINLENGTH(2)]}
           errorText="Wpisz minimum dwa znaki."
           onInput={inputHandler}
           formSubmitted={submitted}
-        
         />
-       
         <Button type="submit" disabled={!formState.isValid}>
-          DODAJ
+          Add
         </Button>
       </form>
-      
-      
     </React.Fragment>
   );
 };

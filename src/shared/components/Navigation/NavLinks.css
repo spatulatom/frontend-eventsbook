@@ -10,40 +10,54 @@
   align-items: center;
 }
 
-.nav-links li {
-  margin: 1rem;
-}
- 
 .nav-links a {
   cursor: pointer;
   color: white;
   text-decoration: none;
   padding: 0.5rem;
+  padding-bottom: 0.1rem;
   font: inherit;
+  width: 100%;
 }
 
-/* somewhat these link remain active after they have been clicked, 
- but acctually at the bottom we have .nav-links a.active, not :active
- /* but .active, dont see that class and it might be of a thing for 
- Navlink component that is imported from react-route-dom*/ 
- /* Basically NavLink is a component that 'knows' whether or 
- not it is currently an acitive link;
- what does it mean 'knows' and how that looks in vanilla js pages?
-  so in vanilla js pages 'to know' we need a speciall function
-  that adds event listeners to all links and then when link is 
-  clicked id adds active class to it (and removes avtive from other link)
-  -this is how it knows,
-  in here Navlink does it for us so it basically must listen 
-  for click and thrn add 'acive' class to cliced NavLink and 
-  removes 'active' it from any other NavLink  */
-  
-.nav-links a:hover,
-.nav-links a:active,
-.nav-links a.active 
-{
+.nav-links li:hover,
+.nav-links li:active,
+.nav-links li.active {
   border-bottom: 4px solid white;
-  border-color: white;
   color: white;
+}
+
+.nav-links a.active {
+  border-bottom: 4px solid white;
+  color: white;
+}
+
+.dropdown{
+   position: relative;
+ }
+ 
+ .dropdown__content {
+   /* automatically takes the width of its parent element */
+  display: none;
+  position: absolute; 
+  top: 120%;
+  background-color: var(--my-color);
+  z-index: 2; 
+  margin-left:0;
+  padding-left: 0;
+}
+
+.dropdown__item{
+  display: block;
+}
+
+.dropdown:hover .dropdown__content{
+  display: block;
+}
+
+.nav-links li.dropdown__item{
+  padding: 0.3rem 0;
+  margin: .7rem 0;
 }
 
 @media (min-width: 768px) {
@@ -56,4 +70,5 @@
   }
 
  }
-  
+
+

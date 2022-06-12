@@ -122,7 +122,6 @@ const Input = props => {
     props.element === 'input' ? (
     
       <input
-      onClick={resetHandler}
         id={props.id}
         type={props.type}
         placeholder={props.placeholder}

@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 
-import PlaceList from '../components/PlaceList';
+import PlaceList from '../components/EventList';
 import ErrorModal from '../../shared/components/UIElements/ErrorModal';
 import LoadingSpinner from '../../shared/components/UIElements/LoadingSpinner';
 import { useHttpClient } from '../../shared/hooks/http-hook';
 
-const UserPlaces = () => {
+const UserEvents = () => {
   const [loadedPlaces, setLoadedPlaces] = useState();
   const { isLoading, error, sendRequest, clearError } = useHttpClient();
 
@@ -16,10 +16,10 @@ const UserPlaces = () => {
     const fetchPlaces = async () => {
       try {
         const responseData = await sendRequest(
-          `${process.env.REACT_APP_BACKEND_URL}/places`
+          `${process.env.REACT_APP_BACKEND_URL}/places/user/${userId}`
         );
-        
-        let reverse = responseData.foundplaces.reverse();
+        console.log(responseData.places,'places');
+        let reverse = responseData.places.reverse();
         setLoadedPlaces(reverse);
         
       } catch (err) {}
@@ -48,4 +48,4 @@ const UserPlaces = () => {
   );
 };
 
-export default UserPlaces;
+export default UserEvents;

@@ -1,0 +1,37 @@
+.comments {
+  list-style: none;
+  margin: 0 auto;
+  padding: 1rem 1rem;
+  margin-top: 0;
+  width: 100%;
+  max-width: 40rem;
+  background: #212428;
+  overflow: hidden;
+}
+.comments input{
+  background-color: #212428;
+  padding: 0.5rem;
+  color: black;
+  font-size: 1rem;
+}
+
+
+.comments__no-comments{
+  text-align: center;
+  margin: 0.3rem
+}
+
+.comments__description,
+.comments__date{
+  font-weight: normal;
+  font-size: 1.1rem;
+  font-style: italic;
+  color: white;
+  font-weight: lighter;
+  margin: 0.2rem;
+  font-style: normal;
+}
+.comments__description{
+  font-style: italic;
+  color: var(--my-color);
+}

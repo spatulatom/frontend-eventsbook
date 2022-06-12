@@ -14,7 +14,7 @@ import {
 import { useForm } from '../../shared/hooks/form-hook';
 import { useHttpClient } from '../../shared/hooks/http-hook';
 import { AuthContext } from '../../shared/context/auth-context';
-import './PlaceForm.css';
+import './EventForm.css';
 
 const NewPost = () => {
   const auth = useContext(AuthContext);
@@ -44,13 +44,17 @@ const NewPost = () => {
   const history = useHistory();
 
   const placeSubmitHandler = async event =>  {
+   
     event.preventDefault();
+    
     try {
+      console.log('POSTITEM');
       await sendRequest(
         `${process.env.REACT_APP_BACKEND_URL}/places/posts`,
         'POST',
         JSON.stringify({
           description: formState.inputs.description.value,
+          address: formState.inputs.address.value
 
         }),
         {
@@ -58,6 +62,7 @@ const NewPost = () => {
           Authorization: 'Bearer ' + auth.token
         }
       );
+      
       history.push('/');
     } catch (err) {}
   };
@@ -74,6 +79,14 @@ const NewPost = () => {
           label="Poniżej miejsce na zwykłe wpisy w stylu 'co słychać':"
           validators={[VALIDATOR_MINLENGTH(2)]}
           errorText="Wpisz wyżej minimum 2 znaki."
+          onInput={inputHandler}
+        />
+          <Input
+          id="address"
+          element="input"
+          label="Gdzie"
+          validators={[VALIDATOR_REQUIRE()]}
+          errorText="Please enter a valid address."
           onInput={inputHandler}
         />
        

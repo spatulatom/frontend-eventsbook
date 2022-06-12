@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {Suspense} from 'react';
 // react-dom-router has named imports so we have to import multiple 
 // specific things by their name (in contrac to for example import
 // Rwact from 'react')
@@ -8,21 +8,46 @@ import {
   Redirect,
   Switch
 } from 'react-router-dom';
-import Reset from './user/pages/Reset';
-import NewPassword from './user/pages/NewPassword';
-import Users from './user/pages/Users';
-import NewPlace from './places/pages/NewPlace';
-import UserPlaces from './places/pages/UserPlaces';
-import UpdatePlace from './places/pages/UpdatePlace';
-import Auth from './user/pages/Auth';
-import AllPlaces from './places/pages/AllPlaces';
-import MainNavigation from './shared/components/Navigation/MainNavigation';
+
 import { AuthContext } from './shared/context/auth-context';
 import { useAuth } from './shared/hooks/auth-hook';
-import Welcome from './user/pages/WelcomePage';
-import NewPost from './places/pages/NewPost';
-import About from './user/pages/About';
-import Login from './user/pages/Login';
+
+// import Reset from './user/pages/Reset';
+// import NewPassword from './user/pages/NewPassword';
+// import Users from './user/pages/Users';
+// import NewPlace from './places/pages/NewPlace';
+// import UserPlaces from './places/pages/UserPlaces';
+// import UpdatePlace from './places/pages/UpdatePlace';
+// import Auth from './user/pages/Login';
+// import AllPlaces from './places/pages/AllPlaces';
+// import Welcome from './user/pages/WelcomePage';
+// import NewPost from './places/pages/NewPost';
+// import About from './user/pages/About';
+// import Login from './user/pages/Login';
+import MainNavigation from './shared/components/Navigation/MainNavigation';
+import LoadingSpinner from './shared/components/UIElements/LoadingSpinner';
+
+
+
+
+// for example AllPlaces is rendered as first page so tehnically
+// we dont need to Reat.lazy. Secondly we import Suspense and
+// wrap our rendered lazyly routes in it(MainNavigation we want rendered
+// always and from the start so we dont React.lazy it);
+// then on Suspense we provide a fallback of what to render if loading jsx
+// code takes longer
+const Users = React.lazy(()=>import('./user/pages/Users'));
+const Reset = React.lazy(()=>import('./user/pages/Reset'));
+const NewPassword = React.lazy(()=>import('./user/pages/NewPassword'));
+const NewEvent = React.lazy(()=>import('./events/pages/NewEvent'));
+const UserEvents = React.lazy(()=>import('./events/pages/UserEvents'));
+const UpdateEvent = React.lazy(()=>import('./events/pages/UpdateEvent'));
+const AllEvents = React.lazy(()=>import('./events/pages/AllEvents'));
+const Welcome = React.lazy(()=>import('./user/pages/WelcomePage'));
+const NewPost = React.lazy(()=>import('./events/pages/NewPost'));
+const About = React.lazy(()=>import('./user/pages/About'));
+const Login = React.lazy(()=>import('./user/pages/Login'));
+
 
 const App = () => {
   const { token, login, logout, userId, userName } = useAuth();
@@ -45,27 +70,27 @@ const App = () => {
         </Route>
         {/* <Route path="/users" component={Users}/> */}
         
-        <Route path="/:userId/places" exact>
-          <UserPlaces />
+        <Route path="/:userId/events" exact>
+          <UserEvents />
         </Route>
-        <Route path="/allplaces" exact>
-          <AllPlaces/>
+        <Route path="/allevents" exact>
+          <AllEvents/>
         </Route>
-        <Route path="/places/new" exact>
-          <NewPlace />
+        <Route path="/events/new" exact>
+          <NewEvent />
         </Route>
         {/* apparently even with exact the order matters, like the following 
         two routes should not be swapped */}
-        <Route path="/places/new-post" exact>
+        <Route path="/events/new-post" exact>
           <NewPost />
         </Route>
-        <Route path="/places/:placeId" exact>
-          <UpdatePlace />
+        <Route path="/events/:eventId" exact>
+          <UpdateEvent />
         </Route>
         <Route path="/about">
           <About />
         </Route>
-        <Redirect to="/allplaces" />
+        <Redirect to="/allevents" />
       </Switch>
     );
   } else {
@@ -127,7 +152,12 @@ const App = () => {
         {/* MainNavigation is rendered above the route where the Switch applies, its always
         visible*/}
         <MainNavigation />
-        <main>{routes}</main>
+        <main>
+          <Suspense fallback={
+            <div className="center">
+              <LoadingSpinner/>
+            </div>}>{routes}
+          </Suspense></main>
       </Router>
     </AuthContext.Provider>
   );

@@ -1,6 +1,6 @@
 import React from 'react';
 import Card from '../../shared/components/UIElements/Card';
-import './Auth.css';
+import './General.css';
 
 
 const About = () => {
@@ -11,9 +11,9 @@ const About = () => {
     <React.Fragment>
       
       
-      <Card className="authentication">
+      <Card className="about">
     
-        <h3> Codzienne zdjęcia/wpisy.</h3>
+      <p>Connect with your friends and the world around you on <span>eventsbook</span>.</p>
         <hr />
         
         

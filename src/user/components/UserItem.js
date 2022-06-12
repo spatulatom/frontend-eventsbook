@@ -7,13 +7,13 @@ import './UserItem.css';
 
 const UserItem = props => {
 
-let places;
-if(props.placeCount===1){
-  places = 'Post'
-}else if(props.placeCount===0 || props.placeCount>4){
-  places = 'Postów'
+let events;
+if(props.eventCount===1){
+  events = 'Event'
+}else if(props.eventCount===0 || props.eventCount>4){
+  events = 'Events'
 }else{
-  places = 'Posty'
+  events = 'Events'
 }
 
   return (
@@ -26,8 +26,7 @@ if(props.placeCount===1){
           <div className="user-item__info">
             <h2>{props.name}</h2>
             <h3>
-              {/* {props.placeCount} {props.placeCount === 1 ? 'Post' : 'Postów'} */}
-              {props.placeCount} {places}
+              {props.placeCount} {events}
             </h3>
           </div>
         </Link>

@@ -9,11 +9,12 @@
   border-radius: 8px;
   max-height: 90vh;
   color: black;
+  overflow: auto;
 }
 .modal__header {
   width: 100%;
   padding: 1rem 0.5rem;
-  background: #2a006e;
+  background: var(--my-color);
   color: white;
 }
 .modal__header h2 {
@@ -60,6 +61,7 @@
 /* styling for sign up page: */
 
 .modal.create-account{
+  position: absolute;
   top: 5vh;
   max-width: 30rem;
 }

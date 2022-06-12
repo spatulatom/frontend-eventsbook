@@ -1,0 +1,35 @@
+
+
+.reset,
+.welcome-page,
+.about,
+.new-password {
+  width: 90%;
+  max-width: 25rem;
+  margin: 7rem auto;
+  text-align: center;
+  color: var(--my-color);
+}
+
+.reset form,
+.welcome-page form,
+.about form,
+.new-password form {
+  margin-bottom: 1rem;
+}
+.reset button,
+.welcome-page button{
+  width: 100%;
+}
+
+.welcome-page p,
+.about p{
+  color: white;
+  font-size: 1.3rem;
+}
+.welcome-page span,
+.about span{
+  color: var(--my-color);
+}
+
+

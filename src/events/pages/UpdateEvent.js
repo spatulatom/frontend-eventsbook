@@ -13,9 +13,9 @@ import {
 import { useForm } from '../../shared/hooks/form-hook';
 import { useHttpClient } from '../../shared/hooks/http-hook';
 import { AuthContext } from '../../shared/context/auth-context';
-import './PlaceForm.css';
+import './EventForm.css';
 
-const UpdatePlace = () => {
+const UpdateEvent = () => {
   const auth = useContext(AuthContext);
   const { isLoading, error, sendRequest, clearError } = useHttpClient();
   const [loadedPlace, setLoadedPlace] = useState();
@@ -24,11 +24,12 @@ const UpdatePlace = () => {
 
   const [formState, inputHandler, setFormData] = useForm(
     {
-      title: {
-        value: 'title',
-        isValid: true
-      },
+   
       description: {
+        value: '',
+        isValid: false
+      },
+      address: {
         value: '',
         isValid: false
       }
@@ -68,8 +69,8 @@ const UpdatePlace = () => {
         `${process.env.REACT_APP_BACKEND_URL}/places/${placeId}`,
         'PATCH',
         JSON.stringify({
-          title: formState.inputs.title.value,
-          description: formState.inputs.description.value
+          description: formState.inputs.description.value,
+          address: formState.inputs.address.value
         }),
         {
           'Content-Type': 'application/json',
@@ -80,7 +81,7 @@ const UpdatePlace = () => {
       console.log('place', response)
 
 
-      history.push('/' + auth.userId + '/places');
+      history.push('/places');
     } catch (err) {}
   };
 
@@ -109,17 +110,7 @@ const UpdatePlace = () => {
       // fetched data only then we want input rendered */}
       {!isLoading && loadedPlace && (
         <form className="place-form" onSubmit={placeUpdateSubmitHandler}>
-          {/* <Input
-            id="title"
-            element="input"
-            type="text"
-            label="Title"
-            validators={[VALIDATOR_REQUIRE()]}
-            errorText="Please enter a valid title."
-            onInput={inputHandler}
-            initialValue={loadedPlace.title}
-            initialValid={true}
-          /> */}
+       
           <Input
             id="description"
             element="textarea"
@@ -134,8 +125,18 @@ const UpdatePlace = () => {
             // initialValue={formState.inputs.description.value}
             initialValid={true}
           />
+            <Input
+          id="address"
+          element="input"
+          label="Address"
+          validators={[VALIDATOR_REQUIRE()]}
+          errorText="Please enter a valid address."
+          onInput={inputHandler}
+          initialValue={loadedPlace.address}
+          initialValid={true}
+        />
           <Button type="submit" disabled={!formState.isValid}>
-            UAKTUALNIJ
+            UPDATE
           </Button>
         </form>
       )}
@@ -143,4 +144,4 @@ const UpdatePlace = () => {
   );
 };
 
-export default UpdatePlace;
+export default UpdateEvent;

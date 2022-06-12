@@ -13,23 +13,20 @@ import {
 import { useForm } from '../../shared/hooks/form-hook';
 import { useHttpClient } from '../../shared/hooks/http-hook';
 import { AuthContext } from '../../shared/context/auth-context';
-import './PlaceForm.css';
+import './EventForm.css';
 
-const NewPlace = () => {
+const NewEvent = () => {
   const auth = useContext(AuthContext);
   const { isLoading, error, sendRequest, clearError } = useHttpClient();
   const [formState, inputHandler] = useForm(
     {
-      title: {
-        value: 'title',
-        isValid: true
-      },
+   
       description: {
         value: '',
         isValid: false
       },
       address: {
-        value: 'adress',
+        value: 'address',
         isValid: true
       },
       image: {
@@ -39,28 +36,6 @@ const NewPlace = () => {
     },
     false
   );
-  // originally state looke like this before we got the useForm hook
-  // const [formState, inputHandler] = useForm(
-  //   {
-  //  inputs:{   title: {
-  //       value: 'title',
-  //       isValid: true
-  //     },
-  //     description: {
-  //       value: '',
-  //       isValid: false
-  //     },
-  //     address: {
-  //       value: 'adress',
-  //       isValid: true
-  //     },
-  //     image: {
-  //       value: null,
-  //       isValid: false
-  //     }
-  //   }},
-  //   isValid:false
-  // );
 
   const history = useHistory();
 
@@ -68,7 +43,6 @@ const NewPlace = () => {
     event.preventDefault();
     try {
       const formData = new FormData();
-      formData.append('title', formState.inputs.title.value);
       formData.append('description', formState.inputs.description.value);
       formData.append('address', formState.inputs.address.value);
       formData.append('image', formState.inputs.image.value);
@@ -82,17 +56,8 @@ const NewPlace = () => {
   return (
     <React.Fragment>
       <ErrorModal error={error} onClear={clearError} />
-      <form className="place-form" onSubmit={placeSubmitHandler}>
+      <form className="event-form" onSubmit={placeSubmitHandler}>
         {isLoading && <LoadingSpinner asOverlay />}
-        {/* <Input
-          id="title"
-          element="input"
-          type="text"
-          label="Tytuł"
-          validators={[VALIDATOR_REQUIRE()]}
-          errorText="Please enter a valid title."
-          onInput={inputHandler}
-        /> */}
         <Input
           id="description"
           element="textarea"
@@ -104,14 +69,14 @@ const NewPlace = () => {
           // event.target.value is gathered 
           onInput={inputHandler}
         />
-        {/* <Input
+        <Input
           id="address"
           element="input"
           label="Gdzie"
           validators={[VALIDATOR_REQUIRE()]}
           errorText="Please enter a valid address."
           onInput={inputHandler}
-        /> */}
+        />
         <ImageUpload
           id="image"
           onInput={inputHandler}
@@ -125,4 +90,4 @@ const NewPlace = () => {
   );
 };
 
-export default NewPlace;
+export default NewEvent;

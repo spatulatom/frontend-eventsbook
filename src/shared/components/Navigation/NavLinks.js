@@ -12,44 +12,59 @@ const NavLinks = props => {
     <ul className="nav-links">
       {auth.isLoggedIn && (
         <li>
-          <NavLink to={"/allplaces"}>LINIA CZASU</NavLink>
+          <NavLink to={"/allevents"}>TIMELINE</NavLink>
         </li>
       )}
         {auth.isLoggedIn && (
       <li>
         <NavLink to="/users" exact>
-          KTO JEST
+          USERS
         </NavLink>
       </li>
        )}
       {auth.isLoggedIn && (
         <li>
-          <NavLink to={`/${auth.userId}/places`}>MOJE</NavLink>
+          <NavLink to={`/${auth.userId}/events`}>MY EVENTS</NavLink>
+        </li>
+      )}
+      {auth.isLoggedIn && (
+        <li  className="dropdown"> <NavLink to="/events/new">ADD EVENT</NavLink>
+          <div className="dropdown__content">
+            <li className="dropdown__item">
+              <NavLink to="/events/new">ADD PLACE</NavLink>
+            </li>
+            <li className="dropdown__item">
+              <NavLink to="/events/new-post">ADD POST</NavLink>
+            </li>
+          </div>
+      </li>
+        
+      )}
+      
+
+      {/* {auth.isLoggedIn && (
+        <li>
+          <NavLink to="/places/new">ADD PLACE</NavLink>
         </li>
       )}
       {auth.isLoggedIn && (
         <li>
-          <NavLink to="/places/new">DODAJ ZDJĘCIE</NavLink>
+          <NavLink to="/places/new-post">ADD POST</NavLink>
         </li>
-      )}
+      )} */}
       {auth.isLoggedIn && (
         <li>
-          <NavLink to="/places/new-post">DODAJ WPIS</NavLink>
-        </li>
-      )}
-      {auth.isLoggedIn && (
-        <li>
-          <NavLink to="/about">O NAS</NavLink>
+          <NavLink to="/about">ABOUT</NavLink>
         </li>
       )}
       {!auth.isLoggedIn && (
         <li>
-          <NavLink to="/auth">ZALOGUJ</NavLink>
+          <NavLink to="/auth">LOG IN</NavLink>
         </li>
       )}
       {auth.isLoggedIn && (
         <li>
-          <a onClick={auth.logout}>WYLOGUJ</a>
+          <a onClick={auth.logout}>LOG OUT</a>
         </li>
       )}
     </ul>

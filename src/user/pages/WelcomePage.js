@@ -1,6 +1,6 @@
 import React from 'react';
 import Card from '../../shared/components/UIElements/Card';
-import './Auth.css';
+import './General.css';
 import {Link} from 'react-router-dom';
 import Button from '../../shared/components/FormElements/Button';
 
@@ -12,15 +12,15 @@ const Welcome = () => {
     <React.Fragment>
       
       
-      <Card className="authentication">
+      <Card className="welcome-page">
     
-        <h3>Codzienne zdjęcia/wpisy.</h3>
+      <p>Connect with your friends and the world around you on <span>eventsbook</span>.</p>
         <hr />
         
         <Link to="/auth">
           <Button type="submit">
           
-          <h3>ZALOGUJ</h3>
+          Log In
         
           </Button>
           </Link>

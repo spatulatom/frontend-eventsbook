@@ -63,7 +63,7 @@ const authSubmitHandler = async event => {
     <React.Fragment>
       <SuccessModal success={success} onClear={clearSuccess}/>  
       <ErrorModal error={error} onClear={clearError} />
-      <Card className="authentication">
+      <Card className="new-password">
         {isLoading && <LoadingSpinner asOverlay />}
         <h2>Wpisz nowe hasło (min. 6 znaków):
         </h2>

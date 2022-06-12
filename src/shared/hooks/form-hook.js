@@ -10,6 +10,8 @@ import { useCallback, useReducer } from 'react';
 // set up your state early in the first render (what about when we fatch data in the 
 // firs render? )
 const formReducer = (state, action) => {
+  // ok why we have (state, action) since we never really apassing any arguments here
+  // we are only calling formReducer just like this when setting up useReducer
   switch (action.type) {
     case 'INPUT_CHANGE':
       let formIsValid = true;

@@ -15,7 +15,7 @@ import {
 import { useForm } from '../../shared/hooks/form-hook';
 import { useHttpClient } from '../../shared/hooks/http-hook';
 import { AuthContext } from '../../shared/context/auth-context';
-import './Auth.css';
+import './Login.css';
 import Modal from '../../shared/components/UIElements/Modal';
 import CreateAccount from './CreateAccount';
 
@@ -77,7 +77,7 @@ const Login = () => {
        <div className="auth-whole-page">
             <Card className="authentication content">
                 <h1>eventsbook</h1>
-                <p>Connect with your friends and the <br/>world around you on Eventsbook.</p>
+                <p>Connect with your friends and the world around you on <span>eventsbook</span>.</p>
             </Card>
 
             <Card className="authentication">
