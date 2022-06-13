@@ -1,0 +1,25 @@
+[debug] [2022-06-13T00:31:55.175Z] ----------------------------------------------------------------------
+[debug] [2022-06-13T00:31:55.178Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\spatu\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js init
+[debug] [2022-06-13T00:31:55.179Z] CLI Version:   10.2.1
+[debug] [2022-06-13T00:31:55.180Z] Platform:      win32
+[debug] [2022-06-13T00:31:55.180Z] Node Version:  v16.14.0
+[debug] [2022-06-13T00:31:55.182Z] Time:          Mon Jun 13 2022 01:31:55 GMT+0100 (Irish Standard Time)
+[debug] [2022-06-13T00:31:55.182Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2022-06-13T00:31:55.241Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2022-06-13T00:31:55.241Z] > authorizing via signed-in user (spatulatom@gmail.com)
+[info] 
+     ######## #### ########  ######## ########     ###     ######  ########
+     ##        ##  ##     ## ##       ##     ##  ##   ##  ##       ##
+     ######    ##  ########  ######   ########  #########  ######  ######
+     ##        ##  ##    ##  ##       ##     ## ##     ##       ## ##
+     ##       #### ##     ## ######## ########  ##     ##  ######  ########
+
+You're about to initialize a Firebase project in this directory:
+
+  C:\Users\spatu\Desktop\eventsbook-mern\eventsbook\frontend
+
+Before we get started, keep in mind:
+
+  * You are initializing within an existing Firebase project directory
+
