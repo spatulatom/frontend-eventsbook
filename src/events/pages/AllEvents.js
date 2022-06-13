@@ -6,30 +6,30 @@ import ErrorModal from '../../shared/components/UIElements/ErrorModal';
 import LoadingSpinner from '../../shared/components/UIElements/LoadingSpinner';
 import { useHttpClient } from '../../shared/hooks/http-hook';
 
-const UserPlaces = () => {
-  const [loadedPlaces, setLoadedPlaces] = useState();
+const AllEvents = () => {
+  const [loadedEvents, setLoadedEvents] = useState();
   const { isLoading, error, sendRequest, clearError } = useHttpClient();
 
   const userId = useParams().userId;
 
   useEffect(() => {
-    const fetchPlaces = async () => {
+    const fetchEvents = async () => {
       try {
         const responseData = await sendRequest(
-          `${process.env.REACT_APP_BACKEND_URL}/places`
+          `${process.env.REACT_APP_BACKEND_URL}/events`
         );
         
-        let reverse = responseData.foundplaces.reverse();
-        setLoadedPlaces(reverse);
+        let reverse = responseData.foundevents.reverse();
+        setLoadedEvents(reverse);
         
       } catch (err) {}
     };
-    fetchPlaces();
+    fetchEvents();
   }, [sendRequest, userId]);
 
-  const placeDeletedHandler = deletedPlaceId => {
-    setLoadedPlaces(prevPlaces =>
-      prevPlaces.filter(place => place.id !== deletedPlaceId)
+  const eventDeleteHandler = deletedEventId => {
+    setLoadedEvents(prevEvents =>
+      prevEvents.filter(event => event.id !== deletedEventId)
     );
   };
 
@@ -41,12 +41,12 @@ const UserPlaces = () => {
           <LoadingSpinner />
         </div>
       )}
-      {!isLoading && loadedPlaces && (
-        <PlaceList items={loadedPlaces} onDeletePlace={placeDeletedHandler} />
+      {!isLoading && loadedEvents && (
+        <PlaceList items={loadedEvents} onDeleteEvent={eventDeleteHandler} />
       )}
     </React.Fragment>
   );
 };
 
-export default UserPlaces;
+export default AllEvents;
  

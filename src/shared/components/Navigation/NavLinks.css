@@ -19,6 +19,9 @@
   font: inherit;
   width: 100%;
 }
+.nav-links li {
+  margin: 1.2rem 0;
+}
 
 .nav-links li:hover,
 .nav-links li:active,
@@ -31,34 +34,10 @@
   border-bottom: 4px solid white;
   color: white;
 }
-
-.dropdown{
-   position: relative;
- }
- 
- .dropdown__content {
-   /* automatically takes the width of its parent element */
+.nav-links__desktop--dropdown{
   display: none;
-  position: absolute; 
-  top: 120%;
-  background-color: var(--my-color);
-  z-index: 2; 
-  margin-left:0;
-  padding-left: 0;
 }
 
-.dropdown__item{
-  display: block;
-}
-
-.dropdown:hover .dropdown__content{
-  display: block;
-}
-
-.nav-links li.dropdown__item{
-  padding: 0.3rem 0;
-  margin: .7rem 0;
-}
 
 @media (min-width: 768px) {
   .nav-links {
@@ -68,6 +47,46 @@
   .nav-links li {
     margin: 0 0.5rem;
   }
+
+  .nav-links__desktop--dropdown{
+    display: block;
+    position: relative;
+  }
+  
+  .nav-links__desktop--dropdown__content {
+    /* automatically takes the width of its parent element */
+   display: none;
+   position: absolute; 
+   top: 120%;
+   background-color: var(--my-color);
+   z-index: 2; 
+   margin-left:0;
+   padding-left: 0;
+ }
+ 
+ .nav-links__desktop--dropdown__item{
+   display: block;
+   padding: 0.3rem 0;
+   margin: .7rem 0;
+ }
+ 
+ .nav-links__desktop--dropdown:hover .nav-links__desktop--dropdown__content{
+   display: block;
+ }
+ 
+ /* we need this weird selecting to overwrite this: .nav-links li {
+  margin: 1.2rem 0;
+} */
+ .nav-links li.nav-links__desktop--dropdown__item{
+   padding: 0.3rem 0;
+   margin: .7rem 0;
+ }
+
+ .nav-links__mobile{
+  display: none;
+}
+
+  
 
  }
 

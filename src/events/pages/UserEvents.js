@@ -16,10 +16,10 @@ const UserEvents = () => {
     const fetchPlaces = async () => {
       try {
         const responseData = await sendRequest(
-          `${process.env.REACT_APP_BACKEND_URL}/places/user/${userId}`
+          `${process.env.REACT_APP_BACKEND_URL}/events/user/${userId}`
         );
-        console.log(responseData.places,'places');
-        let reverse = responseData.places.reverse();
+        console.log(responseData.events,'places');
+        let reverse = responseData.events.reverse();
         setLoadedPlaces(reverse);
         
       } catch (err) {}

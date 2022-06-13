@@ -28,30 +28,29 @@ const NavLinks = props => {
         </li>
       )}
       {auth.isLoggedIn && (
-        <li  className="dropdown"> <NavLink to="/events/new">ADD EVENT</NavLink>
-          <div className="dropdown__content">
-            <li className="dropdown__item">
+        <li  className="nav-links__desktop nav-links__desktop--dropdown"> <NavLink to="/events/new">ADD EVENT</NavLink>
+          <div className="nav-links__desktop--dropdown__content">
+            <li className="nav-links__desktop--dropdown__item">
               <NavLink to="/events/new">ADD PLACE</NavLink>
             </li>
-            <li className="dropdown__item">
+            <li className="nav-links__desktop--dropdown__item">
               <NavLink to="/events/new-post">ADD POST</NavLink>
             </li>
           </div>
       </li>
         
       )}
-      
-
-      {/* {auth.isLoggedIn && (
-        <li>
+      {auth.isLoggedIn && (
+        <li className='nav-links__mobile'>
           <NavLink to="/places/new">ADD PLACE</NavLink>
         </li>
       )}
       {auth.isLoggedIn && (
-        <li>
+        <li className='nav-links__mobile'>
           <NavLink to="/places/new-post">ADD POST</NavLink>
         </li>
-      )} */}
+      )}
+
       {auth.isLoggedIn && (
         <li>
           <NavLink to="/about">ABOUT</NavLink>

@@ -19,14 +19,14 @@ if(props.eventCount===1){
   return (
     <li className="user-item">
       <Card className="user-item__content">
-        <Link to={`/${props.id}/places`}>
+        <Link to={`/${props.id}/events`}>
           <div className="user-item__image">
             <Avatar image={props.image} alt={props.name} />
           </div>
           <div className="user-item__info">
             <h2>{props.name}</h2>
             <h3>
-              {props.placeCount} {events}
+              {props.eventsCount} {events}
             </h3>
           </div>
         </Link>

@@ -28,7 +28,7 @@ const handleLike = ()=>{
 const addLikes = async()=>{
  try{
      const responseData = await sendRequest(
-        `${process.env.REACT_APP_BACKEND_URL}/places/likes-add`,
+        `${process.env.REACT_APP_BACKEND_URL}/events/likes-add`,
         'POST',
         JSON.stringify({
             placeId: props.placeId
@@ -46,7 +46,7 @@ const addLikes = async()=>{
 const removeLikes = async()=>{
     try{
         const responseData = await sendRequest(
-           `${process.env.REACT_APP_BACKEND_URL}/places/likes-delete`,
+           `${process.env.REACT_APP_BACKEND_URL}/events/likes-delete`,
            'DELETE',
            JSON.stringify({
                placeId: props.placeId

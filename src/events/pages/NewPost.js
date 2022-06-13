@@ -50,7 +50,7 @@ const NewPost = () => {
     try {
       console.log('POSTITEM');
       await sendRequest(
-        `${process.env.REACT_APP_BACKEND_URL}/places/posts`,
+        `${process.env.REACT_APP_BACKEND_URL}/events/post`,
         'POST',
         JSON.stringify({
           description: formState.inputs.description.value,
@@ -70,7 +70,7 @@ const NewPost = () => {
   return (
     <React.Fragment>
       <ErrorModal error={error} onClear={clearError} />
-      <form className="place-form" onSubmit={placeSubmitHandler}>
+      <form className="event-form" onSubmit={placeSubmitHandler}>
         {isLoading && <LoadingSpinner asOverlay />}
        
         <Input

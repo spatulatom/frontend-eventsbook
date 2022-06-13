@@ -19,8 +19,9 @@ const UpdateEvent = () => {
   const auth = useContext(AuthContext);
   const { isLoading, error, sendRequest, clearError } = useHttpClient();
   const [loadedPlace, setLoadedPlace] = useState();
-  const placeId = useParams().placeId;
+  const eventId = useParams().eventId;
   const history = useHistory();
+  
 
   const [formState, inputHandler, setFormData] = useForm(
     {
@@ -41,9 +42,9 @@ const UpdateEvent = () => {
     const fetchPlace = async () => {
       try {
         const responseData = await sendRequest(
-          `${process.env.REACT_APP_BACKEND_URL}/places/${placeId}`
+          `${process.env.REACT_APP_BACKEND_URL}/events/${eventId}`
         );
-        setLoadedPlace(responseData.place);
+        setLoadedPlace(responseData.event);
         // setFormData(
         //   {
         //     title: {
@@ -60,13 +61,13 @@ const UpdateEvent = () => {
       } catch (err) {}
     };
     fetchPlace();
-  }, [sendRequest, placeId, setFormData]);
+  }, [sendRequest, eventId, setFormData]);
 
   const placeUpdateSubmitHandler = async event => {
     event.preventDefault();
     try {
      const request= await sendRequest(
-        `${process.env.REACT_APP_BACKEND_URL}/places/${placeId}`,
+        `${process.env.REACT_APP_BACKEND_URL}/events/${eventId}`,
         'PATCH',
         JSON.stringify({
           description: formState.inputs.description.value,
@@ -126,15 +127,15 @@ const UpdateEvent = () => {
             initialValid={true}
           />
             <Input
-          id="address"
-          element="input"
-          label="Address"
-          validators={[VALIDATOR_REQUIRE()]}
-          errorText="Please enter a valid address."
-          onInput={inputHandler}
-          initialValue={loadedPlace.address}
-          initialValid={true}
-        />
+              id="address"
+              element="input"
+              label="Address"
+              validators={[VALIDATOR_REQUIRE()]}
+              errorText="Please enter a valid address."
+              onInput={inputHandler}
+              initialValue={loadedPlace.address}
+              initialValid={true}
+          />
           <Button type="submit" disabled={!formState.isValid}>
             UPDATE
           </Button>

@@ -38,7 +38,7 @@ const PlaceItem = props => {
     setShowConfirmModal(false);
     try {
       await sendRequest(
-        `${process.env.REACT_APP_BACKEND_URL}/places/${props.id}`,
+        `${process.env.REACT_APP_BACKEND_URL}/events/${props.id}`,
         'DELETE',
         null,
         {
@@ -78,35 +78,36 @@ const PlaceItem = props => {
       
   
   let displayContent;
-  // if !props.image we are dealing with posts:
+  // if !props.image we are dealing with new post:
   if(!props.image){
     displayContent = 
-      <div className="place-item__info place-item__info--post">
-        <p className="place-item__description place-item__description--post">{description} {link}</p>
-        <div className="place-item__info">
+      <div className="event-item__info event-item__info--post">
+        <p className="event-item__description event-item__description--post">{description} {link}</p>
+        <div className="event-item__info">
           <Link to="/users">
-            <span className= "place-item__avatar"><img src={props.creatorImage} alt="profile"/></span>
+            <span className= "event-item__avatar"><img src={props.creatorImage} alt="profile"/></span>
           </Link>
-          <span className='place-item__name'>{props.name}</span>
-          <span className='place-item__date'>{props.date}</span>
+          <span className='event-item__name'>{props.name}</span>
+          <span className='event-item__date'>{props.date}</span>
         </div>
       </div>
   }else{
+    // here we have props.image we are dealing with new photo:
     displayContent =  
       <div>
-        <div className={image?"place-item__image place-item__image--background":"place-item__image"}>
-          <img className={image? 'place-item__full-image' : ''}
+        <div className={image?"event-item__image place-item__image--background":"event-item__image"}>
+          <img className={image? 'event-item__full-image' : ''}
           src={props.image}
           lt={props.title}
           onClick={imageZoom}/>
         </div> 
-        <div className="place-item__info">
+        <div className="event-item__info">
           <Link to="/users">
-            <span className= "place-item__avatar"><img src={props.creatorImage} alt="profile"/></span>
+            <span className= "event-item__avatar"><img src={props.creatorImage} alt="profile"/></span>
           </Link>   
-          <span className='place-item__name'>{props.name}</span>
-          <span className='place-item__description'> {props.description}</span>
-          <span className='place-item__date'>{props.date}</span>
+          <span className='event-item__name'>{props.name}</span>
+          <span className='event-item__description'> {props.description}</span>
+          <span className='event-item__date'>{props.date}</span>
         </div>
       </div>
       }
@@ -119,8 +120,8 @@ const PlaceItem = props => {
         show={showMap}
         onCancel={closeMapHandler}
         header={props.address}
-        contentClass="place-item__modal-content"
-        footerClass="place-item__modal-actions"
+        contentClass="event-item__modal-content"
+        footerClass="event-item__modal-actions"
         footer={<Button onClick={closeMapHandler}>CLOSE</Button>}
       >
         <div className="map-container">
@@ -145,17 +146,17 @@ const PlaceItem = props => {
         }>
         <p>This action can not be reverted.</p>
       </Modal>
-      <li className="place-item">
-        <Card className="place-item__content">
+      <li className="event-item">
+        <Card className="event-item__content">
           {isLoading && <LoadingSpinner asOverlay />}
           {displayContent}
           <Likes placeId={props.id} likes={props.likes}/>
-          <div className="place-item__actions">
+          <div className="event-item__actions">
             <Button inverse onClick={openMapHandler}>
               VIEW ON MAP
             </Button>
             {auth.userId === props.creatorId && (
-              <Button to={`/places/${props.id}`}>UPDATE</Button>
+              <Button to={`/events/${props.id}`}>UPDATE</Button>
             )}
 
             {auth.userId === props.creatorId && (
