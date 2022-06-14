@@ -61,9 +61,9 @@ const NewEvent = () => {
         <Input
           id="description"
           element="textarea"
-          label="Opis"
+          label="Event's description:"
           validators={[VALIDATOR_MINLENGTH(5)]}
-          errorText="Wpisz wyżej minimum 5 znaków."
+          errorText="Please enter at least 5 characters."
           // onInput cuold be called anuthing, it only passes function dosent really 
           // do anything like onInput or onChange inside of Input element where 
           // event.target.value is gathered 
@@ -72,7 +72,7 @@ const NewEvent = () => {
         <Input
           id="address"
           element="input"
-          label="Gdzie"
+          label="Event's whereabouts:"
           validators={[VALIDATOR_REQUIRE()]}
           errorText="Please enter a valid address."
           onInput={inputHandler}
@@ -80,10 +80,10 @@ const NewEvent = () => {
         <ImageUpload
           id="image"
           onInput={inputHandler}
-          errorText="Wybierz zdjęcie."
+          errorText="Pick a photo."
         />
         <Button type="submit" disabled={!formState.isValid}>
-          DODAJ
+          ADD EVENT
         </Button>
       </form>
     </React.Fragment>

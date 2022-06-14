@@ -51,6 +51,7 @@
   .nav-links__desktop--dropdown{
     display: block;
     position: relative;
+    min-width: 7rem;
   }
   
   .nav-links__desktop--dropdown__content {

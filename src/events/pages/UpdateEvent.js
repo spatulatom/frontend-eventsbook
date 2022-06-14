@@ -110,7 +110,7 @@ const UpdateEvent = () => {
       {/* we are using this conditional rendering here as we want to wait for our 
       // fetched data only then we want input rendered */}
       {!isLoading && loadedPlace && (
-        <form className="place-form" onSubmit={placeUpdateSubmitHandler}>
+        <form className="event-form" onSubmit={placeUpdateSubmitHandler}>
        
           <Input
             id="description"
@@ -129,7 +129,7 @@ const UpdateEvent = () => {
             <Input
               id="address"
               element="input"
-              label="Address"
+              label="Event location (input aproximation and google engine behind will do the rest):"
               validators={[VALIDATOR_REQUIRE()]}
               errorText="Please enter a valid address."
               onInput={inputHandler}

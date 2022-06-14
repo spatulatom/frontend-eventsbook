@@ -84,7 +84,7 @@ if(comments.length===0){
           type="text"
           label="Comment:"
           validators={[VALIDATOR_MINLENGTH(2)]}
-          errorText="Wpisz minimum dwa znaki."
+          errorText="Input at least 2 characters."
           onInput={inputHandler}
           formSubmitted={submitted}
         />

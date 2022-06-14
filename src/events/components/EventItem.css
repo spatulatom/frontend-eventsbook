@@ -86,6 +86,7 @@
   /* object-fit: cover; */
     width: 100%;
     height: auto;
+    max-height: 90vh;
     position: relative;
     z-index:2;
     /* transform: translateY(50%,50%); */
@@ -137,10 +138,6 @@
   margin: 0.5rem;
 }
 
-.map-container {
-  height: 15rem;
-  width: 100%;
-}
 .event-item__actions button{
   background-color: #212428;
   color: rgb(183, 176, 176);
@@ -152,4 +149,9 @@
   color: rgb(183, 176, 176);
   font-size: 1.1rem;
   font-weight: 500;
+}
+
+.map-container{
+  height: 70vh;
+  width: 100%;
 }

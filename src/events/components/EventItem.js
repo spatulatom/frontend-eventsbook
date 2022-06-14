@@ -95,7 +95,7 @@ const PlaceItem = props => {
     // here we have props.image we are dealing with new photo:
     displayContent =  
       <div>
-        <div className={image?"event-item__image place-item__image--background":"event-item__image"}>
+        <div className={image?"event-item__image--background":"event-item__image"}>
           <img className={image? 'event-item__full-image' : ''}
           src={props.image}
           lt={props.title}
@@ -120,6 +120,7 @@ const PlaceItem = props => {
         show={showMap}
         onCancel={closeMapHandler}
         header={props.address}
+        className="event-item__modal"
         contentClass="event-item__modal-content"
         footerClass="event-item__modal-actions"
         footer={<Button onClick={closeMapHandler}>CLOSE</Button>}

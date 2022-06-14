@@ -21,10 +21,7 @@ const NewPost = () => {
   const { isLoading, error, sendRequest, clearError } = useHttpClient();
   const [formState, inputHandler] = useForm(
     {
-      title: {
-        value: 'title',
-        isValid: true
-      },
+     
       description: {
         value: '',
         isValid: false
@@ -33,10 +30,7 @@ const NewPost = () => {
         value: 'adress',
         isValid: true
       },
-      image: {
-        value: null,
-        isValid: true
-      }
+    
     },
     false
   );
@@ -76,15 +70,15 @@ const NewPost = () => {
         <Input
           id="description"
           element="textarea"
-          label="Poniżej miejsce na zwykłe wpisy w stylu 'co słychać':"
+          label="Event's description:"
           validators={[VALIDATOR_MINLENGTH(2)]}
-          errorText="Wpisz wyżej minimum 2 znaki."
+          errorText="Enter at leat two characters."
           onInput={inputHandler}
         />
           <Input
           id="address"
           element="input"
-          label="Gdzie"
+          label="Event's whereabouts:"
           validators={[VALIDATOR_REQUIRE()]}
           errorText="Please enter a valid address."
           onInput={inputHandler}
@@ -92,7 +86,7 @@ const NewPost = () => {
        
        
         <Button type="submit" disabled={!formState.isValid}>
-          DODAJ
+          ADD EVENT
         </Button>
       </form>
     </React.Fragment>

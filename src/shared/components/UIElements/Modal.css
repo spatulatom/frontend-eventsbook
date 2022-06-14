@@ -7,9 +7,19 @@
   background: white;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26);
   border-radius: 8px;
-  max-height: 90vh;
   color: black;
+  /* overflow: auto for sign up page to go over keyboard when typing */
   overflow: auto;
+}
+
+/* define height in map-container in eventitem.css */
+.modal.event-item__modal{
+  top:5vh;
+  width: 90%;
+  left: 5%;
+}
+.modal.event-item__modal form{
+  height: 100%;
 }
 .modal__header {
   width: 100%;
@@ -23,10 +33,13 @@
 
 .modal__content {
   padding: 1rem 0.5rem;
+
 }
 .modal__footer {
   padding: 1rem 0.5rem;
 }
+
+
 
 @media (min-width: 768px) {
   .modal {
@@ -70,7 +83,6 @@
     left: calc(50% - 15rem);
     width: 30rem;
   }
-  
 }
  .modal__header.create-account{
   display: none;
