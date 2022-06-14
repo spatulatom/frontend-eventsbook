@@ -47,9 +47,9 @@
   position:relative;
 }
 
-.event-item__info p{
+/* .event-item__info p{
   margin-left: 50px;
-}
+} */
 
 .event-item__image {
   width: 100%;
@@ -135,7 +135,9 @@
 
 .event-item__actions button,
 .event-item__actions a {
-  margin: 0.5rem;
+  padding-left: 1rem;
+  padding-right: 1rem; 
+  margin-right: 0.2rem;
 }
 
 .event-item__actions button{

@@ -154,7 +154,7 @@ const PlaceItem = props => {
           <Likes placeId={props.id} likes={props.likes}/>
           <div className="event-item__actions">
             <Button inverse onClick={openMapHandler}>
-              VIEW ON MAP
+              WHERE
             </Button>
             {auth.userId === props.creatorId && (
               <Button to={`/events/${props.id}`}>UPDATE</Button>
