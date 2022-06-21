@@ -6,11 +6,12 @@ import Button from '../../shared/components/FormElements/Button';
 import './EventList.css';
 
 const EventList = props => {
+  console.log('EVENTLIST', props.items.length)
   if (props.items.length === 0) {
     return (
       <div className="event-list center">
         <Card>
-          <h2>You do not have any events yet. You wan t to create one?</h2>
+          <h2>No events just yet. Would you like to create one?</h2>
           <Button to="/events/new">Create</Button>
         </Card>
       </div>

@@ -1,35 +1,35 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 
-import PlaceList from '../components/EventList';
+import EventList from '../components/EventList';
 import ErrorModal from '../../shared/components/UIElements/ErrorModal';
 import LoadingSpinner from '../../shared/components/UIElements/LoadingSpinner';
 import { useHttpClient } from '../../shared/hooks/http-hook';
 
 const UserEvents = () => {
-  const [loadedPlaces, setLoadedPlaces] = useState();
+  const [loadedEvents, setLoadedEvents] = useState([]);
   const { isLoading, error, sendRequest, clearError } = useHttpClient();
 
   const userId = useParams().userId;
 
   useEffect(() => {
-    const fetchPlaces = async () => {
+    const fetchEvents = async () => {
       try {
         const responseData = await sendRequest(
           `${process.env.REACT_APP_BACKEND_URL}/events/user/${userId}`
         );
         console.log(responseData.events,'places');
         let reverse = responseData.events.reverse();
-        setLoadedPlaces(reverse);
+        setLoadedEvents(reverse);
         
       } catch (err) {}
     };
-    fetchPlaces();
+    fetchEvents();
   }, [sendRequest, userId]);
 
-  const placeDeletedHandler = deletedPlaceId => {
-    setLoadedPlaces(prevPlaces =>
-      prevPlaces.filter(place => place.id !== deletedPlaceId)
+  const eventDeletedHandler = deletedEventId => {
+    setLoadedEvents(prevEvents =>
+      prevEvents.filter(event => event.id !== deletedEventId)
     );
   };
 
@@ -41,8 +41,8 @@ const UserEvents = () => {
           <LoadingSpinner />
         </div>
       )}
-      {!isLoading && loadedPlaces && (
-        <PlaceList items={loadedPlaces} onDeletePlace={placeDeletedHandler} />
+      {!isLoading && loadedEvents && (
+        <EventList items={loadedEvents} onDeleteEvent={eventDeletedHandler} />
       )}
     </React.Fragment>
   );
