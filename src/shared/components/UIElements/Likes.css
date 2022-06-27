@@ -34,6 +34,7 @@
 }
 
 .likes__count{ 
+    display: inline-block;
     padding-right: 1rem;
     padding-left: 0rem;
     
@@ -41,7 +42,7 @@
 .likes__users{
     padding: 0rem;
     margin-right: 0.4rem;
-    color: white;
+    color: var(--my-color)
 }
 
 .likes__users:last-child .likes__coma{

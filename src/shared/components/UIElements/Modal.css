@@ -12,7 +12,7 @@
   overflow: auto;
 }
 
-/* define height in map-container in eventitem.css */
+/* defined height in map-container in EventItem.css */
 .modal.event-item__modal{
   top:5vh;
   width: 90%;

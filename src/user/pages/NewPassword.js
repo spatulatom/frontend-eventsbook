@@ -65,16 +65,16 @@ const authSubmitHandler = async event => {
       <ErrorModal error={error} onClear={clearError} />
       <Card className="new-password">
         {isLoading && <LoadingSpinner asOverlay />}
-        <h2>Wpisz nowe hasło (min. 6 znaków):
+        <h2>Enter your new password (at least 6 characters):
         </h2>
         <hr />
         <form onSubmit={authSubmitHandler}>
           <input type={hidden ? 'password' : 'text'} id="pass" name="password"
           minlength="6" required value={password} onChange={passwordHandler}/>
-            <button  type="button" onClick={toggleShow}>Pokaż / Ukryj</button>
+            <button  type="button" onClick={toggleShow}>Show/Hide</button>
     
           <Button type="submit" disabled={!valid}>
-            ZMIEŃ HASŁO
+            Update Password
           </Button>
         </form>
         

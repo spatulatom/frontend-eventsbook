@@ -35,13 +35,13 @@ const Reset = () => {
 
   
 
-  const emailHandler = event=>{
-      setEmail(event.target.value);
-      const at = "@"
-     if(event.target.value.includes(at)){
-        setValid(true)
-     }
-  }
+  // const emailHandler = event=>{
+  //     setEmail(event.target.value);
+  //     const at = "@"
+  //    if(event.target.value.includes(at)){
+  //       setValid(true)
+  //    }
+  // }
     
       
 
