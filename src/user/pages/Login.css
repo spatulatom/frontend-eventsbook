@@ -38,7 +38,7 @@
 .authentication form {
   margin-bottom: 1rem;
 }
-.authentication p{
+.authentication__description{
   color: white;
   font-size: 1.3rem;
 }

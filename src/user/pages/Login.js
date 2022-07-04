@@ -77,7 +77,7 @@ const Login = () => {
        <div className="auth-whole-page">
             <Card className="authentication content">
                 <h1>eventsbook</h1>
-                <p>Connect with your friends and the world around you on <span>eventsbook</span>.</p>
+                <p class="authentication__description">Connect with your friends and the world around you on <span>eventsbook</span>.</p>
             </Card>
 
             <Card className="authentication">
