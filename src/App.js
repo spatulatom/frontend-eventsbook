@@ -64,14 +64,14 @@ const App = () => {
         the default;
         also there shouldnt be nothing betewen Routes and Switch
         like for example React.Fragment*/}
-        <Route path="/users" exact>
+        {/* <Route path="/users" exact>
           <Users />
-        </Route>
+        </Route> */}
         {/* another way: <Route path="/users" component={Users}/> */}
         
-        <Route path="/:userId/events" exact>
+        {/* <Route path="/:userId/events" exact>
           <UserEvents />
-        </Route>
+        </Route> */}
         <Route path="/allevents" exact>
           <AllEvents/>
         </Route>
@@ -103,6 +103,12 @@ const App = () => {
         </Route> */}
         <Route path="/allevents" exact>
           <AllEvents />
+        </Route>
+        <Route path="/users" exact>
+          <Users />
+        </Route>
+        <Route path="/:userId/events" exact>
+          <UserEvents />
         </Route>
         <Route path="/auth" exact>
           <Login/>

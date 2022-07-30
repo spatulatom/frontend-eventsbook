@@ -113,15 +113,15 @@
 .event-item__description--post{
   padding: 1.5rem 2rem;
   text-align: center;
-  font-weight: 100;
-  font-size: 1.8rem;
+  font-weight:lighter;
+  font-size: 1.6rem;
   margin: 1rem;
-  font-style: italic;
+  font-style:italic;
   min-height: 10vh ;
 }
 
 .event-item a{
-  color: white;
+  /* color: var(--my-color) */
 }
 
 
