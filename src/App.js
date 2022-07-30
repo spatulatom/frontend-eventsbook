@@ -69,9 +69,9 @@ const App = () => {
         </Route> */}
         {/* another way: <Route path="/users" component={Users}/> */}
         
-        {/* <Route path="/:userId/events" exact>
+        <Route path="/:userId/events" exact>
           <UserEvents />
-        </Route> */}
+        </Route>
         <Route path="/allevents" exact>
           <AllEvents/>
         </Route>
