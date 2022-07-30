@@ -67,7 +67,7 @@ const PlaceItem = props => {
       // other words are simply returned to be part of the new array
       description = props.description.split(' ').map(word=>{
         if(word.includes(url)){
-          word = <a href={word} target="_blank" rel="noopener noreferrer">click here</a>;
+          word = <a href={word} target="_blank" rel="noopener noreferrer">see the site</a>;
           link= word;
         }else{
           return word

@@ -1,7 +1,7 @@
 .comments {
   list-style: none;
   margin: 0 auto;
-  padding: 1rem 1rem;
+  padding: .5rem 1rem 2.5rem;
   margin-top: 0;
   width: 100%;
   max-width: 40rem;
@@ -18,13 +18,13 @@
 
 .comments__no-comments{
   text-align: center;
-  margin: 0.3rem
+  margin: 0.3rem;
 }
 
 .comments__description,
 .comments__date{
   font-weight: normal;
-  font-size: 1.1rem;
+  font-size: 1rem;
   font-style: italic;
   color: white;
   font-weight: lighter;

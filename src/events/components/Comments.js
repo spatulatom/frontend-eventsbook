@@ -65,7 +65,7 @@ let comment;
 if(comments.length===0){
   comment = <p className="comments__no-comments">Be the first one to post a comment.</p>
   }
-
+  
   let inputField;
   if(auth.token){
     inputField = 
@@ -92,13 +92,14 @@ if(comments.length===0){
       <ErrorModal error={error} onClear={clearError}/>
       <form className="comments" onSubmit={commentSubmitHandler}>
         {isLoading && <LoadingSpinner asOverlay/>}
+        {comment}
         {comments.map(comment=>
           <div key={comment.id}>
             <p className="comments__date">{comment.date}, added by: {comment.addedBy}</p>
             <p className="comments__description"> ━ {comment.description}</p>
           </div>
         )}
-          {comment}
+          
           {inputField}
       </form>
     </React.Fragment>
