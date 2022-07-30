@@ -101,11 +101,10 @@ const App = () => {
         <Route path="/:userId/places" exact>
           <UserPlaces />
         </Route> */}
-        <Route path="/" exact>
-          <Welcome />
+        <Route path="/allevents" exact>
+          <AllEvents />
         </Route>
         <Route path="/auth" exact>
-          {/* <Auth /> */}
           <Login/>
         </Route>
         <Route path="/reset" exact>
@@ -117,7 +116,7 @@ const App = () => {
         <Route path="/login" exact>
           <Login/>
         </Route>
-        <Redirect to="/" />
+        <Redirect to="/allevents" />
       </Switch>
     );
   }

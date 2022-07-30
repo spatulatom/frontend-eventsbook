@@ -66,19 +66,11 @@ if(comments.length===0){
   comment = <p className="comments__no-comments">Be the first one to post a comment.</p>
   }
 
-  return (
-    <React.Fragment>
-      <ErrorModal error={error} onClear={clearError}/>
-      <form className="comments" onSubmit={commentSubmitHandler}>
-        {isLoading && <LoadingSpinner asOverlay/>}
-        {comments.map(comment=>
-          <div key={comment.id}>
-            <p className="comments__date">{comment.date}, added by: {comment.addedBy}</p>
-            <p className="comments__description"> ━ {comment.description}</p>
-          </div>
-        )}
-          {comment}
-        <Input
+  let inputField;
+  if(auth.token){
+    inputField = 
+    <div>
+       <Input
           id="title"
           element="input"
           type="text"
@@ -91,6 +83,23 @@ if(comments.length===0){
         <Button type="submit" disabled={!formState.isValid}>
           Add
         </Button>
+
+    </div>
+  }
+
+  return (
+    <React.Fragment>
+      <ErrorModal error={error} onClear={clearError}/>
+      <form className="comments" onSubmit={commentSubmitHandler}>
+        {isLoading && <LoadingSpinner asOverlay/>}
+        {comments.map(comment=>
+          <div key={comment.id}>
+            <p className="comments__date">{comment.date}, added by: {comment.addedBy}</p>
+            <p className="comments__description"> ━ {comment.description}</p>
+          </div>
+        )}
+          {comment}
+          {inputField}
       </form>
     </React.Fragment>
   );

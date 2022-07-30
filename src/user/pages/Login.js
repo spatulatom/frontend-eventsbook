@@ -78,6 +78,9 @@ const Login = () => {
             <Card className="authentication content">
                 <h1>eventsbook</h1>
                 <p class="authentication__description">Connect with your friends and the world around you on <span>eventsbook</span>.</p>
+                <p class="authentication__note">Note: create a new account for yourself or log in as User1
+                 with email: user1@gmail.com, password: user01; or like User2, User3, User4, User5 or User6 by replacing numbers in email address 
+                 and in the password. </p>
             </Card>
 
             <Card className="authentication">
@@ -93,7 +96,7 @@ const Login = () => {
                 validators={[VALIDATOR_EMAIL()]}
                 errorText="Please enter a valid email address."
                 onInput={inputHandler}
-                place
+                placeholder="Your email address"
             />
             <Input
                 element="input"
@@ -103,6 +106,7 @@ const Login = () => {
                 validators={[VALIDATOR_MINLENGTH(6)]}
                 errorText="Please enter a valid password, at least 6 characters."
                 onInput={inputHandler}
+                placeholder="Your password"
             />
             
             <Button inverse type="submit" disabled={!formState.isValid}>
