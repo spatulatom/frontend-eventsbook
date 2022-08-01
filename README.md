@@ -1,7 +1,7 @@
 
 # frontend-'eventsbook'
 
-This is a frontend source code of a MERN app called 'eventsbook' and is intended as social media platform.
+This is a frontend source code of a MERN app called 'eventsbook', the app is intended as social media platform.
 
 It is built with up-to-date React.js (React 18) and is deployed on Firebase. The frontend and the backend are both using Google Map Platform APIs for the 'location' functionality.
 
