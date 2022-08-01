@@ -72,15 +72,16 @@ const NewPost = () => {
           element="textarea"
           label="Event's description:"
           validators={[VALIDATOR_MINLENGTH(2)]}
-          errorText="Enter at leat two characters."
+          errorText="Enter between 2-1000 characters."
           onInput={inputHandler}
+         
         />
           <Input
           id="address"
           element="input"
-          label="Event's whereabouts:"
+          label="Event's location (input a location's approximation and google engine behind will do the rest or input an exact address):"
           validators={[VALIDATOR_REQUIRE()]}
-          errorText="Please enter a valid address."
+          errorText="Please enter a location's approximation or an exact address (max 200 characters)."
           onInput={inputHandler}
         />
        

@@ -128,8 +128,8 @@ const Input = props => {
         onChange={changeHandler}
         onBlur={touchHandler}
         value={inputState.value}
-      
-      />
+        maxlength="200"
+        />
     ) : (
       <textarea
         id={props.id}
@@ -137,6 +137,7 @@ const Input = props => {
         onChange={changeHandler}
         onBlur={touchHandler}
         value={inputState.value}
+        maxlength="1000"
       />
     );
 

@@ -50,6 +50,7 @@ const ImageUpload = props => {
         type="file"
         accept=".jpg,.png,.jpeg"
         onChange={pickedHandler}
+      
         // somehow the 'choose file' that normally shows with type='file' is 
         // disabled here and useRef taps into it
       />

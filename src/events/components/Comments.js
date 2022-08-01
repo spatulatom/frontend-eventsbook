@@ -95,7 +95,7 @@ if(comments.length===0){
         {comment}
         {comments.map(comment=>
           <div key={comment.id}>
-            <p className="comments__date">{comment.date}, added by: {comment.addedBy}</p>
+            <p className="comments__date">{comment.date}, comment added by: {comment.addedBy}</p>
             <p className="comments__description"> ━ {comment.description}</p>
           </div>
         )}

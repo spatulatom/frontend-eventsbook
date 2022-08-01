@@ -115,7 +115,7 @@ const UpdateEvent = () => {
           <Input
             id="description"
             element="textarea"
-            label="Opis"
+            label="Event's description:"
             validators={[VALIDATOR_MINLENGTH(5)]}
             errorText="Please enter a valid description (min. 5 characters)."
             onInput={inputHandler}
@@ -129,9 +129,9 @@ const UpdateEvent = () => {
             <Input
               id="address"
               element="input"
-              label="Event location (input aproximation and google engine behind will do the rest):"
+              label="Event's location (input a location's approximation and google engine behind will do the rest or input an exact address):"
               validators={[VALIDATOR_REQUIRE()]}
-              errorText="Please enter a valid address."
+              errorText="Please enter a location's approximation or an exact address."
               onInput={inputHandler}
               initialValue={loadedPlace.address}
               initialValid={true}

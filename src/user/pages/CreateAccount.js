@@ -93,7 +93,7 @@ console.log('auth', responseData.name);
               center
               id="image"
               onInput={inputHandler}
-              // errorText="Wybierz zdjęcie."
+              errorText="Choose any photo as your avatar."
             />
           
           <Input

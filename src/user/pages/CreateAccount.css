@@ -15,7 +15,7 @@
 .create-account button{
     width: 50%;
     padding: .8rem;
-    background-color: rgb(66, 183, 42);
+    background-color: var(--my-color);
     transition: all .2s linear;
 }
 .create-account button:hover{

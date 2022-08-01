@@ -78,8 +78,15 @@ const Login = () => {
             <Card className="authentication content">
                 <h1>eventsbook</h1>
                 <p class="authentication__description">Connect with your friends and the world around you on <span>eventsbook</span>.</p>
-                <p class="authentication__note">Note: create a new account for yourself or log in as 'Guest'
-                 with email: guest@guest.com, password: guest1.</p>
+                <p class="authentication__note">Note:
+
+                <br/> 1. Log In - log in as a Guest with an email: guest@guest.com, a password: guest1 and explore the app for yourself!
+                
+                <br/> 2. Create a new account - it only takes a few seconds, any picture as a user's avatar and an email
+                 address are needed. An email notification will be sent to your email address upon your account creation. I will delete your account later in the database, no worries.
+                <br/>  You can also use a dummy email address if that's easier and it will be accepted as long as it follows an email address syntax: email@email.eee.
+               
+                </p>
             </Card>
 
             <Card className="authentication">

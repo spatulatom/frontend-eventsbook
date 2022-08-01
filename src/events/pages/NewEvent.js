@@ -63,7 +63,7 @@ const NewEvent = () => {
           element="textarea"
           label="Event's description:"
           validators={[VALIDATOR_MINLENGTH(5)]}
-          errorText="Please enter at least 5 characters."
+          errorText="Please enter between 2-1000 characters."
           // onInput cuold be called anuthing, it only passes function dosent really 
           // do anything like onInput or onChange inside of Input element where 
           // event.target.value is gathered 
@@ -72,10 +72,11 @@ const NewEvent = () => {
         <Input
           id="address"
           element="input"
-          label="Event's whereabouts:"
+          label="Event's location (input a location's approximation and google engine behind will do the rest or input an exact address):"
           validators={[VALIDATOR_REQUIRE()]}
-          errorText="Please enter a valid address."
+          errorText="Please enter a location's approximation or an exact address (max 200 characters)."
           onInput={inputHandler}
+          
         />
         <ImageUpload
           id="image"
