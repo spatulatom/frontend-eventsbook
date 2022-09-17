@@ -83,8 +83,7 @@ const Login = () => {
                 <br/> 1. Log In - log in as a Guest with an email: guest@guest.com, a password: guest1 and explore the app for yourself!
                 
                 <br/> 2. Create a new account - it only takes a few seconds, any picture as a user's avatar and an email
-                 address are needed. An email notification will be sent to your email address upon your account creation. I will delete your account later in the database, no worries.
-                <br/>  You can also use a dummy email address if that's easier and it will be accepted as long as it follows an email address syntax: email@email.eee.
+                 address are needed (you can use dummy email address). 
                
                 </p>
             </Card>
