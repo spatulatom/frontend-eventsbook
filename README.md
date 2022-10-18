@@ -12,9 +12,9 @@
 
   <p>
     'eventsbook' is a full stack app - this repository contains its frontend source code while
-    the backend source code is stored in another GitHub repository 
+    the backend source code is stored in 
     <a href="https://github.com/spatulatom/backend-eventsbook">
-    here »</a>
+    another GitHub repository  here »</a>
     <br />
     <br />
     <a href="https://eventsbook-91260.web.app/allevents"><strong>View the deployed app »</strong></a>
@@ -41,26 +41,30 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
+1. This app is a social media platform where users can
+* log in/create an account
+* upload photos/create posts (about upcoming social events)
+* add likes
+* add comments
+* tag their event's location on the Google map 
+* change their passwords
 ![Product Name Screen Shot](imgs/eb1.png)
 
-There are many great README templates available on GitHub; however, I didn't find one that really suited my needs so I created this enhanced one. I want to create a README template so amazing that it'll be the last one you ever need -- I think this is it.
 
-Here's why:
-* Your time should be focused on creating something amazing. A project that solves a problem and helps others
-* You shouldn't be doing the same tasks over and over like creating a README from scratch
-* You should implement DRY principles to the rest of your life :smile:
-
+2. There are currently a few dummy users accounts created and all of them users have already posted some events
 ![Product Name Screen Shot](imgs/eb5.png)
 
-Of course, no one template will serve all projects since your needs may be different. So I'll be adding more in the near future. You may also suggest 
 
+
+3. Below we have an example of an event created by User1
+* titled 'Lorem Ipsum'
+* with the date and time of the creation
+* it received 3 likes by Guest, User1 and User3
+* by using the three buttons the event can be seen on Google Maps, 
+Updated or Deleted
+* there were two comments made by Guest and User3
 ![Product Name Screen Shot](imgs/eb6.png)
-changes by forking this repo and creating a pull request or opening an issue. Thanks to all the people have contributed to expanding this template!
 
-![Product Name Screen Shot](imgs/ev2.png)
-changes by forking this repo and creating a pull request or opening an issue. Thanks to all the people have contributed to expanding this template!
-
-Use the `BLANK_README.md` to get started.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -88,12 +92,11 @@ This section should list any major frameworks/libraries used to bootstrap your p
 <!-- ACKNOWLEDGMENTS -->
 ## Acknowledgments
 
-Use this space to list resources you find helpful and would like to give credit to. I've included a few of my favorites to kick things off!
+This project was completed at the end of the Udemy course listed below
 
 
-* Node
-* Firebase
-* Google Fonts
+* <a href="https://www.udemy.com/course/react-nodejs-express-mongodb-the-mern-fullstack-guide/learn/lecture/16833284?start=15#overview">The MERN Guide</a>
+
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
