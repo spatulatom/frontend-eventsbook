@@ -41,7 +41,7 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-This app is a social media platform where users can:
+1. This app is a social media platform where users can:
 * log in/create an account,
 * upload photos/create posts (about upcoming social events),
 * add likes,
@@ -52,13 +52,13 @@ This app is a social media platform where users can:
 ![Product Name Screen Shot](imgs/eb1.png)
 
 
-2. There are currently a few dummy users accounts created and all of them users have already posted some events as seen below:
+ There are currently a few dummy users accounts created and all of them users have already posted some events as seen below:
 
 ![Product Name Screen Shot](imgs/eb5.png)
 
 
 
-3. Below we have an example of an event created by User1
+Below we have an example of an event created by User1
 * titled 'Lorem Ipsum'
 * with the date and time of the creation
 * it received 3 likes by Guest, User1 and User3
@@ -95,10 +95,11 @@ This section should list any major frameworks/libraries used to bootstrap your p
 <!-- ACKNOWLEDGMENTS -->
 ## Acknowledgments
 
-This project was completed at the end of the Udemy course listed below
 
+* this project was completed at the end of the Udemy course<a href="https://www.udemy.com/course/react-nodejs-express-mongodb-the-mern-fullstack-guide/learn/lecture/16833284?start=15#overview">The MERN Guide</a>
 
-* <a href="https://www.udemy.com/course/react-nodejs-express-mongodb-the-mern-fullstack-guide/learn/lecture/16833284?start=15#overview">The MERN Guide</a>
+* all users' accounts and all events have been created with the usage of free-to-use photos from www.pexels.com
+
 
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
