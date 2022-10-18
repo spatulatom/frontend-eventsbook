@@ -52,13 +52,13 @@
 ![Product Name Screen Shot](imgs/eb1.png)
 
 
- There are currently a few dummy users accounts created and all of them users have already posted some events as seen below:
+2. There are currently a few dummy users accounts created and all of them users have already posted some events as seen below:
 
 ![Product Name Screen Shot](imgs/eb5.png)
 
 
 
-Below we have an example of an event created by User1
+3. Below we have an example of an event created by User1
 * titled 'Lorem Ipsum'
 * with the date and time of the creation
 * it received 3 likes by Guest, User1 and User3
@@ -75,16 +75,24 @@ Updated or Deleted
 
 ### Built With
 
-This section should list any major frameworks/libraries used to bootstrap your project. Leave any add-ons/plugins for the acknowledgements section. Here are a few examples.
-
-* [![Next][Next.js]][Next-url]
+* HTML, CSS
 * [![React][React.js]][React-url]
-* [![Vue][Vue.js]][Vue-url]
-* [![Angular][Angular.io]][Angular-url]
-* [![Svelte][Svelte.dev]][Svelte-url]
-* [![Laravel][Laravel.com]][Laravel-url]
-* [![Bootstrap][Bootstrap.com]][Bootstrap-url]
-* [![JQuery][JQuery.com]][JQuery-url]
+* Node.js, Express.js, Mongoose 
+* MongoBD for a database
+* Amazon Web Services API for stroin photos
+* Google Maps Platform API for events locations
+* SendGrid API for password change
+* Multer middleware library for uploading photos
+* bcrypt library for hashing passwords
+* jsonwebtoken for creating login token
+* Firebase for deploying the frontend
+* Heroku for deploying the backend
+
+Heavy usage of React Hooks like useReducer for managing complex state and useContext (as a part of the Context API that is being used for a "global" state managment) also useEffect, useRef, useCallback and useState. There are also custom hooks built and that is form-hook.js for managing form data, http-hook.js for all fetching requests and auth-hook.js for managing back end login token through the rerender cycles.
+All sorts of errors that are being handled on the backend  (like an incorrect password) are sent to the frontend and are displayed in a modal window on UI for better UX.
+As for the CSS styling, Block/Element/Modifier convention is being followed.
+
+
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -96,7 +104,7 @@ This section should list any major frameworks/libraries used to bootstrap your p
 ## Acknowledgments
 
 
-* this project was completed at the end of the Udemy course<a href="https://www.udemy.com/course/react-nodejs-express-mongodb-the-mern-fullstack-guide/learn/lecture/16833284?start=15#overview">The MERN Guide</a>
+* this project was completed at the end of the Udemy course <a href="https://www.udemy.com/course/react-nodejs-express-mongodb-the-mern-fullstack-guide/learn/lecture/16833284?start=15#overview">The MERN Guide</a>
 
 * all users' accounts and all events have been created with the usage of free-to-use photos from www.pexels.com
 
