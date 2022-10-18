@@ -41,7 +41,7 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-![Product Name Screen Shot](imgs/eb3.png)
+![Product Name Screen Shot](imgs/eb1.png)
 
 There are many great README templates available on GitHub; however, I didn't find one that really suited my needs so I created this enhanced one. I want to create a README template so amazing that it'll be the last one you ever need -- I think this is it.
 
@@ -50,9 +50,12 @@ Here's why:
 * You shouldn't be doing the same tasks over and over like creating a README from scratch
 * You should implement DRY principles to the rest of your life :smile:
 
-![Product Name Screen Shot](imgs/eb1.png)
+![Product Name Screen Shot](imgs/eb5.png)
 
 Of course, no one template will serve all projects since your needs may be different. So I'll be adding more in the near future. You may also suggest 
+
+![Product Name Screen Shot](imgs/eb6.png)
+changes by forking this repo and creating a pull request or opening an issue. Thanks to all the people have contributed to expanding this template!
 
 ![Product Name Screen Shot](imgs/ev2.png)
 changes by forking this repo and creating a pull request or opening an issue. Thanks to all the people have contributed to expanding this template!
