@@ -41,17 +41,19 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-1. This app is a social media platform where users can
-* log in/create an account
-* upload photos/create posts (about upcoming social events)
-* add likes
-* add comments
-* tag their event's location on the Google map 
-* change their passwords
+This app is a social media platform where users can:
+* log in/create an account,
+* upload photos/create posts (about upcoming social events),
+* add likes,
+* add comments,
+* tag their event's location on the Google map ,
+* change their passwords.
+
 ![Product Name Screen Shot](imgs/eb1.png)
 
 
-2. There are currently a few dummy users accounts created and all of them users have already posted some events
+2. There are currently a few dummy users accounts created and all of them users have already posted some events as seen below:
+
 ![Product Name Screen Shot](imgs/eb5.png)
 
 
@@ -63,6 +65,7 @@
 * by using the three buttons the event can be seen on Google Maps, 
 Updated or Deleted
 * there were two comments made by Guest and User3
+
 ![Product Name Screen Shot](imgs/eb6.png)
 
 
