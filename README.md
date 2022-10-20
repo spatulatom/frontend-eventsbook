@@ -75,18 +75,30 @@ Updated or Deleted
 
 ### Built With
 
-* HTML, CSS
-* [![React][React.js]][React-url]
-* Node.js, Express.js, Mongoose 
-* MongoBD for a database
-* Amazon Web Services API for stroin photos
-* Google Maps Platform API for events locations
-* SendGrid API for password change
-* Multer middleware library for uploading photos
-* bcrypt library for hashing passwords
-* jsonwebtoken for creating login token
-* Firebase for deploying the frontend
-* Heroku for deploying the backend
+* HTML, CSS,
+* [![React][React.js]][React-url],
+* Node.js, Express.js, Mongoose, 
+* MongoBD for a database,
+* Firebase for deploying the frontend,
+* Heroku for deploying the backend,
+* Amazon Web Services API for stroing photos,
+* Google Maps Platform API for events locations,
+* SendGrid API for password change,
+* Multer middleware library for uploading photos,
+* bcrypt library for hashing passwords,
+* jsonwebtoken for creating login token,
+* Chrome Developer Tools for testing screen sizes and using Lighthouse,
+* Chrome, Firefox, Brave Browser, Edge and Opera for browser testing the responsiveness,
+* https://ui.dev/amiresponsive for testing and to make responsive image,
+* https://favicon.io/favicon-generator/ to create a favicon,
+* https://fontawesome.com/ for icons,
+* https://tinypng.com/ to optimize images,
+* https://www.remove.bg/ for removing images backgrounds,
+* https://chrome.google.com/webstore/detail/pesticide-for-chrome-with/neonnmencpneifkhlmhmfhfiklgjmloi during development,
+* https://wave.webaim.org/ to check web accessibility,
+* https://balsamiq.com/ for wireframing.
+
+
 
 Heavy usage of React Hooks like useReducer for managing complex state and useContext (as a part of the Context API that is being used for a "global" state managment) also useEffect, useRef, useCallback and useState. There are also custom hooks built and that is form-hook.js for managing form data, http-hook.js for all fetching requests and auth-hook.js for managing back end login token through the rerender cycles.
 All sorts of errors that are being handled on the backend  (like an incorrect password) are sent to the frontend and are displayed in a modal window on UI for better UX.
