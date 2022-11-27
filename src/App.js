@@ -128,7 +128,8 @@ const App = () => {
   }
 
   return (
-    // we wrap the parts of our  application that should be able to use that context
+    // we wrap the parts of our  application that should be able to use 
+    // that context
     //  with it, and so that AuthContext object that we created in auth-context.js
     // turns out to have a property .Provider that is a React component, 
     // so we use this component and wrap our entire Router with it;

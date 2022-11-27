@@ -1,4 +1,4 @@
-import React, { useState,  } from 'react';
+import React, { useState } from 'react';
 import { useParams } from 'react-router-dom';
 
 import Card from '../../shared/components/UIElements/Card';
@@ -7,79 +7,78 @@ import ErrorModal from '../../shared/components/UIElements/ErrorModal';
 import LoadingSpinner from '../../shared/components/UIElements/LoadingSpinner';
 import SuccessModal from '../../shared/components/UIElements/SuccessModal';
 
-
 import { useHttpClient } from '../../shared/hooks/http-hook';
 import './Auth.css';
 
 const NewPassword = () => {
+  const token = useParams().token;
 
-    const token = useParams().token;
-  
   const [password, setPassword] = useState('');
-  const [hidden, setHidden]=useState(true)
+  const [hidden, setHidden] = useState(true);
   const [valid, setValid] = useState(false);
   const { isLoading, error, sendRequest, clearError } = useHttpClient();
-  const [success, setSuccess]= useState();
+  const [success, setSuccess] = useState();
 
+  const toggleShow = () => {
+    setHidden((prev) => !prev);
+  };
 
- const toggleShow =()=> {
-    setHidden(prev=> !prev);
-  }
+  const passwordHandler = (event) => {
+    setPassword(event.target.value);
+    if (event.target.value.length > 5) {
+      setValid(true);
+    }
+  };
+  const authSubmitHandler = async (event) => {
+    event.preventDefault();
 
-  const passwordHandler = event=>{
-      setPassword(event.target.value);
-    if(event.target.value.length>5){
-        setValid(true)
-    }}
-const authSubmitHandler = async event => {
-        event.preventDefault();
+    try {
+      const responseData = await sendRequest(
+        process.env.REACT_APP_BACKEND_URL + '/users/newpassword',
+        'POST',
 
-    
-      try {
-        const responseData = await sendRequest(
-          process.env.REACT_APP_BACKEND_URL + '/users/newpassword',
-          'POST',
-          
-          JSON.stringify({
-            password,
-            token,
-            
-          }),
-          {
-            'Content-Type': 'application/json'
-          }
-        );
-        setPassword('');
-        setSuccess(responseData.message);
-
-      } catch (err) {}
-    } 
-    const clearSuccess = () => {
-        setSuccess(null);
-      };
-    
+        JSON.stringify({
+          password,
+          token,
+        }),
+        {
+          'Content-Type': 'application/json',
+        }
+      );
+      setPassword('');
+      setSuccess(responseData.message);
+    } catch (err) {}
+  };
+  const clearSuccess = () => {
+    setSuccess(null);
+  };
 
   return (
     <React.Fragment>
-      <SuccessModal success={success} onClear={clearSuccess}/>  
+      <SuccessModal success={success} onClear={clearSuccess} />
       <ErrorModal error={error} onClear={clearError} />
       <Card className="new-password">
         {isLoading && <LoadingSpinner asOverlay />}
-        <h2>Enter your new password (at least 6 characters):
-        </h2>
+        <h2>Enter your new password (at least 6 characters):</h2>
         <hr />
         <form onSubmit={authSubmitHandler}>
-          <input type={hidden ? 'password' : 'text'} id="pass" name="password"
-          minlength="6" required value={password} onChange={passwordHandler}/>
-            <button  type="button" onClick={toggleShow}>Show/Hide</button>
-    
+          <input
+            type={hidden ? 'password' : 'text'}
+            id="pass"
+            name="password"
+            minlength="6"
+            required
+            value={password}
+            onChange={passwordHandler}
+          />
+          <button type="button" onClick={toggleShow}>
+            Show/Hide
+          </button>
+
           <Button type="submit" disabled={!valid}>
             Update Password
           </Button>
         </form>
-        
-        
-         
       </Card>
     </React.Fragment>
   );
