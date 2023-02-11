@@ -68,7 +68,7 @@
 - MongoBD for a database,
 - Firebase for deploying the frontend,
 - Heroku for deploying the backend,
-- Cloudinary for storing photos,
+- Cloudinary API for storing photos,
 - Google Maps Platform API for events locations,
 - SendGrid API for password change,
 - Multer middleware library for uploading photos,
