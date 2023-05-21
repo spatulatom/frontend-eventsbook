@@ -49,11 +49,7 @@ const PlaceItem = (props) => {
     } catch (err) {}
   };
 
-  const imageZoom = (event) => {
-    console.log('Click!!', event.target);
-    setFullImage((prev) => !prev);
-  };
-
+ 
   // The code aims to format a post description by identifying if it contains a 
   // URL and transforming it into an active link. Here's how it works:
 
@@ -118,10 +114,15 @@ const PlaceItem = (props) => {
   } else {
     description = props.description; // Use the original description if it doesn't include the URL
   }
-  
-  
-  
   // end of the check for active link section.
+
+
+  // Click on Image to make it take the whole screeen 
+  const imageZoom = (event) => {
+    console.log('Click!!', event.target);
+    setFullImage((prev) => !prev);
+  };
+
 
   let displayContent;
   // if !props.image we are dealing with new post:
@@ -151,13 +152,15 @@ const PlaceItem = (props) => {
             image ? 'event-item__image--background' : 'event-item__image'
           }
         >
+       
           <img
             className={image ? 'event-item__full-image' : ''}
             src={props.image}
             alt={props.title}
             onClick={imageZoom}
           />
-        </div>
+              </div>
+       
         <div className="event-item__info">
           <Link to="/users">
             <span className="event-item__avatar">

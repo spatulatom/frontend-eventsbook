@@ -17,8 +17,10 @@
   padding: 0.5rem;
   padding-bottom: 0.1rem;
   font: inherit;
-  font-size: 1.3rem;
+  font-size: 1.2rem;
   width: 100%;
+  white-space: nowrap;
+
 }
 .nav-links li {
   margin: 1.2rem 0;
