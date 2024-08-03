@@ -67,9 +67,10 @@
 - Node.js, Express.js, Mongoose,
 - MongoBD for a database,
 - Firebase for deploying the frontend,
-- Heroku for deploying the backend,
+- Render.com for deploying the backend,
 - Cloudinary API for storing photos,
-- Google Maps Platform API for events locations,
+- Google Maps Platform API for events locations (due to having to use laser card on Google Maps this
+feature is temporarly on hold),
 - SendGrid API for password change,
 - Multer middleware library for uploading photos,
 - bcrypt library for hashing passwords,
