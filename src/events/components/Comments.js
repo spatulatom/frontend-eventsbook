@@ -14,6 +14,7 @@ import "./Comments.css";
 
 const Comments = (props) => {
   const auth = useContext(AuthContext);
+  const [successMessage, setSuccessMessage] = useState(false);
   const [submitted, setSubmitted] = useState(false);
   const { isLoading, error, sendRequest, clearError } = useHttpClient();
   const [comments, setComments] = useState(props.comments);
@@ -46,6 +47,15 @@ const Comments = (props) => {
       let response = responeData;
       setComments([...comments, response]);
       inputHandler("title", "", false);
+       // Show success message
+       setSuccessMessage(true);
+      
+      
+       
+       // Hide success message after 3 seconds
+       setTimeout(() => {
+         setSuccessMessage(false);
+       }, 3000);
       console.log("response", response);
       setSubmitted((prev) => !prev);
       setTimeout(() => {
@@ -92,6 +102,11 @@ const Comments = (props) => {
       <form className="comments" onSubmit={commentSubmitHandler}>
         {/* {isLoading && <LoadingSpinner asOverlay />} */} {/* uncomment this line to show the spinner for the overLaying the whole event */}
         {isLoading && <LoadingSpinner/>}
+        {successMessage && (
+          <div className="comments__success-message">
+            <p>Your comment was added successfully!</p>
+          </div>
+        )}
         {inputField}
         </form>
         {comment}

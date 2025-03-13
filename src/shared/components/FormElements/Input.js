@@ -108,13 +108,21 @@ const Input = props => {
     });
   };
 
-  if(props.formSubmitted){
-    if(value===''){
-      return true;
+  // if(props.formSubmitted){
+  //   if(value===''){
+  //     return true;
       
-    }else{
-    resetHandler();}
+  //   }else{
+  //   resetHandler();}
+  // }
+
+  // With this:
+if(props.formSubmitted){
+  if(value!==''){
+    resetHandler();
   }
+  // No return here, continue with normal rendering
+}
 
   
 
