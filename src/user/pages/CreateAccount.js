@@ -1,21 +1,20 @@
-import React, { useState, useContext, Fragment } from 'react';
-import {Link} from 'react-router-dom';
+import React, { useContext } from "react";
 
-import Card from '../../shared/components/UIElements/Card';
-import Input from '../../shared/components/FormElements/Input';
-import Button from '../../shared/components/FormElements/Button';
-import ErrorModal from '../../shared/components/UIElements/ErrorModal';
-import LoadingSpinner from '../../shared/components/UIElements/LoadingSpinner';
-import ImageUpload from '../../shared/components/FormElements/ImageUpload';
+import Card from "../../shared/components/UIElements/Card";
+import Input from "../../shared/components/FormElements/Input";
+import Button from "../../shared/components/FormElements/Button";
+import ErrorModal from "../../shared/components/UIElements/ErrorModal";
+import LoadingSpinner from "../../shared/components/UIElements/LoadingSpinner";
+import ImageUpload from "../../shared/components/FormElements/ImageUpload";
 import {
   VALIDATOR_EMAIL,
   VALIDATOR_MINLENGTH,
-  VALIDATOR_REQUIRE
-} from '../../shared/util/validators';
-import { useForm } from '../../shared/hooks/form-hook';
-import { useHttpClient } from '../../shared/hooks/http-hook';
-import { AuthContext } from '../../shared/context/auth-context';
-import './CreateAccount.css';
+  VALIDATOR_REQUIRE,
+} from "../../shared/util/validators";
+import { useForm } from "../../shared/hooks/form-hook";
+import { useHttpClient } from "../../shared/hooks/http-hook";
+import { AuthContext } from "../../shared/context/auth-context";
+import "./CreateAccount.css";
 
 const CreateAccount = () => {
   const auth = useContext(AuthContext);
@@ -25,47 +24,45 @@ const CreateAccount = () => {
   const [formState, inputHandler] = useForm(
     {
       email: {
-        value: '',
-        isValid: false
+        value: "",
+        isValid: false,
       },
       password: {
-        value: '',
-        isValid: false
+        value: "",
+        isValid: false,
       },
       name: {
-        value: '',
-        isValid: false
+        value: "",
+        isValid: false,
       },
       image: {
         value: null,
-        isValid: false
-      }
+        isValid: false,
+      },
     },
     false
   );
 
- 
-
-  const authSubmitHandler = async event => {
+  const authSubmitHandler = async (event) => {
+    console.log("authSubmitHandler");
     event.preventDefault();
 
-    
-      try {
-        const formData = new FormData();
-        formData.append('email', formState.inputs.email.value);
-        formData.append('name', formState.inputs.name.value);
-        formData.append('password', formState.inputs.password.value);
-        formData.append('image', formState.inputs.image.value);
-        const responseData = await sendRequest(
-          process.env.REACT_APP_BACKEND_URL+'/users/signup',
-          'POST',
-          formData
-        );
-console.log('auth', responseData.name);
-        auth.login(responseData.userId, responseData.token, responseData.name);
-      } catch (err) {}
-    }
-
+    try {
+      const formData = new FormData();
+      console.log("authSubmitHandler222");
+      formData.append("email", formState.inputs.email.value);
+      formData.append("name", formState.inputs.name.value);
+      formData.append("password", formState.inputs.password.value);
+      formData.append("image", formState.inputs.image.value);
+      const responseData = await sendRequest(
+        process.env.REACT_APP_BACKEND_URL + "/users/signup",
+        "POST",
+        formData
+      );
+      console.log("auth", responseData.name);
+      auth.login(responseData.userId, responseData.token, responseData.name);
+    } catch (err) {}
+  };
 
   return (
     <React.Fragment>
@@ -76,26 +73,24 @@ console.log('auth', responseData.name);
         <h4>It's quick and easy.</h4>
         <hr />
         <form onSubmit={authSubmitHandler}>
-          
-            <Input
-              element="input"
-              id="name"
-              type="text"
-              // label="*Nazwa użytkownika"
-              validators={[VALIDATOR_REQUIRE()]}
-              errorText="Please enter a name."
-              onInput={inputHandler}
-              placeholder="First name"
-            />
-          
-          
-            <ImageUpload
-              center
-              id="image"
-              onInput={inputHandler}
-              errorText="Choose any photo as your avatar."
-            />
-          
+          <Input
+            element="input"
+            id="name"
+            type="text"
+            // label="*Nazwa użytkownika"
+            validators={[VALIDATOR_REQUIRE()]}
+            errorText="Please enter a name."
+            onInput={inputHandler}
+            placeholder="First name"
+          />
+
+          <ImageUpload
+            center
+            id="image"
+            onInput={inputHandler}
+            errorText="Choose any photo as your avatar."
+          />
+
           <Input
             element="input"
             id="email"
@@ -116,12 +111,32 @@ console.log('auth', responseData.name);
             onInput={inputHandler}
             placeholder="New password"
           />
-          
-          <Button type="submit" disabled={!formState.isValid}>
+
+          {/* <Button type="submit" disabled={!formState.isValid}>
             Sign Up
-          </Button>
+          </Button> */}
+
+<Button 
+  type="button"
+  onClick={(e) => {
+    console.log("Button clicked, form valid?", formState.isValid);
+    if (formState.isValid) {
+      authSubmitHandler(e);
+    } else {
+      console.log("Form is not valid, cannot submit");
+      alert("Please fill out all required fields correctly");
+    }
+  }}
+  style={{
+    width: "50%",
+    padding: ".8rem",
+    opacity: !formState.isValid ? 0.5 : 1,
+  }}
+>
+  Sign Up
+</Button>
         </form>
-     </Card>
+      </Card>
     </React.Fragment>
   );
 };
