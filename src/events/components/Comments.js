@@ -65,7 +65,7 @@ const Comments = (props) => {
     );
   }
 
-  let inputField;
+  let inputField = <p className="comments__no-comments">Please login to comment.</p>;
   if (auth.token) {
     inputField = (
       <div>
@@ -73,14 +73,14 @@ const Comments = (props) => {
           id="title"
           element="input"
           type="text"
-          label="Comment:"
+          placeholder="Your comment..."
           validators={[VALIDATOR_MINLENGTH(2)]}
           errorText="Input at least 2 characters."
           onInput={inputHandler}
           formSubmitted={submitted}
         />
         <Button type="submit" disabled={!formState.isValid}>
-          Add
+          Add a comment
         </Button>
       </div>
     );
@@ -90,10 +90,12 @@ const Comments = (props) => {
     <React.Fragment>
       <ErrorModal error={error} onClear={clearError} />
       <form className="comments" onSubmit={commentSubmitHandler}>
-        {isLoading && <LoadingSpinner asOverlay />}
+        {/* {isLoading && <LoadingSpinner asOverlay />} */} {/* uncomment this line to show the spinner for the overLaying the whole event */}
+        {isLoading && <LoadingSpinner/>}
         {inputField}
+        </form>
         {comment}
-        {comments.map((comment) => (
+        {[...comments].reverse().map((comment) => (
           <div key={comment.id}>
             <p className="comments__date">
               {comment.date}, comment added by: {comment.addedBy}
@@ -103,7 +105,7 @@ const Comments = (props) => {
         ))}
 
     
-      </form>
+   
     </React.Fragment>
   );
 };
