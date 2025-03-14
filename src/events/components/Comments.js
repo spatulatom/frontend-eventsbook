@@ -110,14 +110,16 @@ const Comments = (props) => {
         {inputField}
         </form>
         {comment}
+        <div className="comments_container">
         {[...comments].reverse().map((comment) => (
           <div key={comment.id}>
             <p className="comments__date">
-              {comment.date}, comment added by: {comment.addedBy}
+              {comment.date}, commented by {comment.addedBy}:
             </p>
-            <p className="comments__description"> ━ {comment.description}</p>
+            <p className="comments__description"> - {comment.description}</p>
           </div>
         ))}
+        </div>
 
     
    
