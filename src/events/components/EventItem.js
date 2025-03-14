@@ -79,6 +79,35 @@ const PlaceItem = (props) => {
   // include active links when a URL is detected.
 
 
+
+// Example: Original URL from your fetch
+
+// let originalUrl = "https://res.cloudinary.com/your-cloud-name/image/upload/sample.jpg";
+let croppedUrl;
+
+if(props.image) {
+
+// Function to add cropping with a specific aspect ratio
+function applyCropRatio(url, aspectRatio, width = null) {
+  const parts = url.split("/upload/");
+  if (parts.length !== 2) return url; // Ensure URL is valid
+
+  let transformation = `c_crop,ar_${aspectRatio}`;
+  if (width) transformation += `,w_${width}`;
+
+  return `${parts[0]}/upload/${transformation}/${parts[1]}`;
+}
+
+// Usage
+croppedUrl = applyCropRatio(props.image, "2:1", 500); // Square, 500px wide
+console.log(croppedUrl);
+// Output: https://res.cloudinary.com/your-cloud-name/image/upload/c_crop,ar_1:1,w_500/sample.jpg
+
+// Set to image src
+// document.querySelector("img").src = croppedUrl;
+}
+
+
   let description;
   let url = 'https:';
   let link;
@@ -155,7 +184,7 @@ const PlaceItem = (props) => {
        
           <img
             className={image ? 'event-item__full-image' : ''}
-            src={props.image}
+            src={croppedUrl}
             alt={props.title}
             onClick={imageZoom}
           />
