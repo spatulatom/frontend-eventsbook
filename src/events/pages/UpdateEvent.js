@@ -1,19 +1,19 @@
-import React, { useEffect, useState, useContext } from 'react';
-import { useParams, useHistory } from 'react-router-dom';
+import React, { useEffect, useState, useContext } from "react";
+import { useParams, useHistory } from "react-router-dom";
 
-import Input from '../../shared/components/FormElements/Input';
-import Button from '../../shared/components/FormElements/Button';
-import Card from '../../shared/components/UIElements/Card';
-import LoadingSpinner from '../../shared/components/UIElements/LoadingSpinner';
-import ErrorModal from '../../shared/components/UIElements/ErrorModal';
+import Input from "../../shared/components/FormElements/Input";
+import Button from "../../shared/components/FormElements/Button";
+import Card from "../../shared/components/UIElements/Card";
+import LoadingSpinner from "../../shared/components/UIElements/LoadingSpinner";
+import ErrorModal from "../../shared/components/UIElements/ErrorModal";
 import {
   VALIDATOR_REQUIRE,
-  VALIDATOR_MINLENGTH
-} from '../../shared/util/validators';
-import { useForm } from '../../shared/hooks/form-hook';
-import { useHttpClient } from '../../shared/hooks/http-hook';
-import { AuthContext } from '../../shared/context/auth-context';
-import './EventForm.css';
+  VALIDATOR_MINLENGTH,
+} from "../../shared/util/validators";
+import { useForm } from "../../shared/hooks/form-hook";
+import { useHttpClient } from "../../shared/hooks/http-hook";
+import { AuthContext } from "../../shared/context/auth-context";
+import "./EventForm.css";
 
 const UpdateEvent = () => {
   const auth = useContext(AuthContext);
@@ -21,19 +21,17 @@ const UpdateEvent = () => {
   const [loadedPlace, setLoadedPlace] = useState();
   const eventId = useParams().eventId;
   const history = useHistory();
-  
 
   const [formState, inputHandler, setFormData] = useForm(
     {
-   
       description: {
-        value: '',
-        isValid: false
+        value: "",
+        isValid: false,
       },
       address: {
-        value: '',
-        isValid: false
-      }
+        value: "",
+        isValid: false,
+      },
     },
     false
   );
@@ -63,26 +61,25 @@ const UpdateEvent = () => {
     fetchPlace();
   }, [sendRequest, eventId, setFormData]);
 
-  const placeUpdateSubmitHandler = async event => {
+  const placeUpdateSubmitHandler = async (event) => {
     event.preventDefault();
     try {
-     const request= await sendRequest(
+      const request = await sendRequest(
         `${process.env.REACT_APP_BACKEND_URL}/events/${eventId}`,
-        'PATCH',
+        "PATCH",
         JSON.stringify({
           description: formState.inputs.description.value,
-          address: formState.inputs.address.value
+          address: formState.inputs.address.value,
         }),
         {
-          'Content-Type': 'application/json',
-          Authorization: 'Bearer ' + auth.token
+          "Content-Type": "application/json",
+          Authorization: "Bearer " + auth.token,
         }
       );
       let response = request.place;
-      console.log('place', response)
+      console.log("place", response);
 
-
-      history.push('/places');
+      history.push("/places");
     } catch (err) {}
   };
 
@@ -111,7 +108,6 @@ const UpdateEvent = () => {
       // fetched data only then we want input rendered */}
       {!isLoading && loadedPlace && (
         <form className="event-form" onSubmit={placeUpdateSubmitHandler}>
-       
           <Input
             id="description"
             element="textarea"
@@ -121,20 +117,27 @@ const UpdateEvent = () => {
             onInput={inputHandler}
             initialValue={loadedPlace.description}
             // we can not set initialValue ad assign to it formState.inputs.description.value
-            // why? because i dont know it shoul work becuse it is set with lodadPlace in 
+            // why? because i dont know it shoul work becuse it is set with lodadPlace in
             // useEffect by the same fetched data, but it dosen relly set it, why?
             // initialValue={formState.inputs.description.value}
             initialValid={true}
           />
-            <Input
-              id="address"
-              element="input"
-              label="Event's location (input a location's approximation and google engine behind will do the rest or input an exact address):"
-              validators={[VALIDATOR_REQUIRE()]}
-              errorText="Please enter a location's approximation or an exact address."
-              onInput={inputHandler}
-              initialValue={loadedPlace.address}
-              initialValid={true}
+          <p className="location-hint">
+            You can pick any location from this list of cities (case
+            insensitive): Sydney, New York, London, Paris, Tokyo, Warsaw,
+            Dublin, Rome, Berlin, Oslo, Milan, Istanbul, Copenhagen, Vienna,
+            Jakarta, Kuala Lumpur, Guangzhou, Zurich, Mexico City, Reykjavik,
+            Cairo, Nairobi, Beijing, Dubai, Buenos Aires
+          </p>
+          <Input
+            id="address"
+            element="input"
+            label="Event's location:"
+            validators={[VALIDATOR_REQUIRE()]}
+            errorText="Please enter a location's approximation or an exact address."
+            onInput={inputHandler}
+            initialValue={loadedPlace.address}
+            initialValid={true}
           />
           <Button type="submit" disabled={!formState.isValid}>
             UPDATE

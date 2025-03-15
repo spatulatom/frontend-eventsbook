@@ -1,55 +1,59 @@
-import React, { useContext } from 'react';
-import { useHistory } from 'react-router-dom';
+import React, { useContext } from "react";
+import { useHistory } from "react-router-dom";
 
-import Input from '../../shared/components/FormElements/Input';
-import Button from '../../shared/components/FormElements/Button';
-import ErrorModal from '../../shared/components/UIElements/ErrorModal';
-import LoadingSpinner from '../../shared/components/UIElements/LoadingSpinner';
-import ImageUpload from '../../shared/components/FormElements/ImageUpload';
+import Input from "../../shared/components/FormElements/Input";
+import Button from "../../shared/components/FormElements/Button";
+import ErrorModal from "../../shared/components/UIElements/ErrorModal";
+import LoadingSpinner from "../../shared/components/UIElements/LoadingSpinner";
+import ImageUpload from "../../shared/components/FormElements/ImageUpload";
 import {
   VALIDATOR_REQUIRE,
-  VALIDATOR_MINLENGTH
-} from '../../shared/util/validators';
-import { useForm } from '../../shared/hooks/form-hook';
-import { useHttpClient } from '../../shared/hooks/http-hook';
-import { AuthContext } from '../../shared/context/auth-context';
-import './EventForm.css';
+  VALIDATOR_MINLENGTH,
+} from "../../shared/util/validators";
+import { useForm } from "../../shared/hooks/form-hook";
+import { useHttpClient } from "../../shared/hooks/http-hook";
+import { AuthContext } from "../../shared/context/auth-context";
+import "./EventForm.css";
 
 const NewEvent = () => {
   const auth = useContext(AuthContext);
   const { isLoading, error, sendRequest, clearError } = useHttpClient();
   const [formState, inputHandler] = useForm(
     {
-   
       description: {
-        value: '',
-        isValid: false
+        value: "",
+        isValid: false,
       },
       address: {
-        value: 'address',
-        isValid: true
+        value: "address",
+        isValid: true,
       },
       image: {
         value: null,
-        isValid: false
-      }
+        isValid: false,
+      },
     },
     false
   );
 
   const history = useHistory();
 
-  const placeSubmitHandler = async event => {
+  const placeSubmitHandler = async (event) => {
     event.preventDefault();
     try {
       const formData = new FormData();
-      formData.append('description', formState.inputs.description.value);
-      formData.append('address', formState.inputs.address.value);
-      formData.append('image', formState.inputs.image.value);
-      await sendRequest(process.env.REACT_APP_BACKEND_URL+'/events', 'POST', formData, {
-        Authorization: 'Bearer ' + auth.token
-      });
-      history.push('/');
+      formData.append("description", formState.inputs.description.value);
+      formData.append("address", formState.inputs.address.value);
+      formData.append("image", formState.inputs.image.value);
+      await sendRequest(
+        process.env.REACT_APP_BACKEND_URL + "/events",
+        "POST",
+        formData,
+        {
+          Authorization: "Bearer " + auth.token,
+        }
+      );
+      history.push("/");
     } catch (err) {}
   };
 
@@ -64,19 +68,25 @@ const NewEvent = () => {
           label="Event's description:"
           validators={[VALIDATOR_MINLENGTH(5)]}
           errorText="Please enter between 2-1000 characters."
-          // onInput cuold be called anuthing, it only passes function dosent really 
-          // do anything like onInput or onChange inside of Input element where 
-          // event.target.value is gathered 
+          // onInput cuold be called anuthing, it only passes function dosent really
+          // do anything like onInput or onChange inside of Input element where
+          // event.target.value is gathered
           onInput={inputHandler}
         />
+        <p className="location-hint">
+          You can pick any location from this list of cities (case insensitive):
+          Sydney, New York, London, Paris, Tokyo, Warsaw, Dublin, Rome, Berlin,
+          Oslo, Milan, Istanbul, Copenhagen, Vienna, Jakarta, Kuala Lumpur,
+          Guangzhou, Zurich, Mexico City, Reykjavik, Cairo, Nairobi, Beijing,
+          Dubai, Buenos Aires
+        </p>
         <Input
           id="address"
           element="input"
-          label="Event's location (input a location's approximation and google engine behind will do the rest or input an exact address):"
+          label="Event's location:"
           validators={[VALIDATOR_REQUIRE()]}
           errorText="Please enter a location's approximation or an exact address (max 200 characters)."
           onInput={inputHandler}
-          
         />
         <ImageUpload
           id="image"

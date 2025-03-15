@@ -30,7 +30,7 @@ const Map = props => {
     // zoom: zoom - so we don get an error, 
     // otherwise if we wanted to run whats inside useEffect first we would get 
     // an error sine mapRef.current is falsy
-    let map;
+    
   useEffect(() => {
     // inndex.html will crrate new google to window, and on it we have .maps and
     // .Map, this is a contructor function which will now be available on the global 
@@ -39,7 +39,7 @@ const Map = props => {
     // we could use document.getElementbyId and assign an id to our div below , like we do in here:
     // in index.js: ReactDOM.render(<App />, document.getElementById('root'));
     // but we use useRef - I wonder if we could use ref in index.js
-    map = new window.google.maps.Map(mapRef.current, {
+  const  map = new window.google.maps.Map(mapRef.current, {
       //   center: {lat: -34.397, lng: 150.644}, this kind of format required
       center: center,
       zoom: zoom
