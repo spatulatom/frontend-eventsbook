@@ -99,7 +99,7 @@ function applyCropRatio(url, aspectRatio, width = null) {
 }
 
 // Usage
-croppedUrl = applyCropRatio(props.image, "2:1"); // Square, 500px wide
+croppedUrl = applyCropRatio(props.image, "3:2"); // Square, 500px wide
 console.log(croppedUrl);
 // Output: https://res.cloudinary.com/your-cloud-name/image/upload/c_crop,ar_1:1,w_500/sample.jpg
 
