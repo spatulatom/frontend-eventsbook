@@ -1,19 +1,19 @@
-import React, { useState, useContext } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState, useContext } from "react";
+import { Link } from "react-router-dom";
 
-import Card from '../../shared/components/UIElements/Card';
-import Button from '../../shared/components/FormElements/Button';
-import Modal from '../../shared/components/UIElements/Modal';
-import Map from '../../shared/components/UIElements/Map';
-import ErrorModal from '../../shared/components/UIElements/ErrorModal';
-import LoadingSpinner from '../../shared/components/UIElements/LoadingSpinner';
-import Comments from './Comments';
-import Likes from '../../shared/components/UIElements/Likes';
+import Card from "../../shared/components/UIElements/Card";
+import Button from "../../shared/components/FormElements/Button";
+import Modal from "../../shared/components/UIElements/Modal";
+import Map from "../../shared/components/UIElements/Map";
+import ErrorModal from "../../shared/components/UIElements/ErrorModal";
+import LoadingSpinner from "../../shared/components/UIElements/LoadingSpinner";
+import Comments from "./Comments";
+import Likes from "../../shared/components/UIElements/Likes";
 
-import { AuthContext } from '../../shared/context/auth-context';
-import { useHttpClient } from '../../shared/hooks/http-hook';
+import { AuthContext } from "../../shared/context/auth-context";
+import { useHttpClient } from "../../shared/hooks/http-hook";
 
-import './EventItem.css';
+import "./EventItem.css";
 
 const PlaceItem = (props) => {
   const { isLoading, error, sendRequest, clearError } = useHttpClient();
@@ -39,89 +39,84 @@ const PlaceItem = (props) => {
     try {
       await sendRequest(
         `${process.env.REACT_APP_BACKEND_URL}/events/${props.id}`,
-        'DELETE',
+        "DELETE",
         null,
         {
-          Authorization: 'Bearer ' + auth.token,
+          Authorization: "Bearer " + auth.token,
         }
       );
       props.onDelete(props.id);
     } catch (err) {}
   };
 
- 
-  // The code aims to format a post description by identifying if it contains a 
+  // The code aims to format a post description by identifying if it contains a
   // URL and transforming it into an active link. Here's how it works:
 
   // 1. Declare variables: description, url, and link.
-  // 2 .Check if the props.description includes the url string and there are no 
+  // 2 .Check if the props.description includes the url string and there are no
   //  spaces in the description. If true, assign the JSX element
   //  <a href={props.description}>click here</a> to the description variable.
   // 3. If the previous condition is false, check if props.description includes
-  //  the url string and there are spaces in the description. If true, split 
+  //  the url string and there are spaces in the description. If true, split
   //  the props.description string into an array of words using spaces as separators.
-  // 4. Map over each word in the array and check if the word includes the url 
+  // 4. Map over each word in the array and check if the word includes the url
   //   string.
-  //   If the word includes the url string, modify the word to be an active 
+  //   If the word includes the url string, modify the word to be an active
   //   link wrapped in an <a> tag.
   //   Assign the modified word to the link variable.
-  //   If the word does not include the url string, explicitly return the word 
+  //   If the word does not include the url string, explicitly return the word
   //   as it is.
   //   Finally, return null for the case where the word includes the URL.
   // 5. Filter out the null values from the array of words.
-  // 6. Join the modified words back into a string using spaces and assign it 
+  // 6. Join the modified words back into a string using spaces and assign it
   // to the description variable.
-  // 7. If both previous conditions are false, use the original props.description 
+  // 7. If both previous conditions are false, use the original props.description
   //   value for the description variable.
   // 8. The rest of the code follows after this logic to render the component.
 
-  // By applying this logic, the code attempts to format the description to 
+  // By applying this logic, the code attempts to format the description to
   // include active links when a URL is detected.
 
+  // Example: Original URL from your fetch
 
+  // let originalUrl = "https://res.cloudinary.com/your-cloud-name/image/upload/sample.jpg";
+  let croppedUrl;
 
-// Example: Original URL from your fetch
+  if (props.image) {
+    // Function to add cropping with a specific aspect ratio
+    function applyCropRatio(url, aspectRatio, width = null) {
+      const parts = url.split("/upload/");
+      if (parts.length !== 2) return url; // Ensure URL is valid
 
-// let originalUrl = "https://res.cloudinary.com/your-cloud-name/image/upload/sample.jpg";
-let croppedUrl;
+      let transformation = `c_crop,ar_${aspectRatio}`;
+      if (width) transformation += `,w_${width}`;
 
-if(props.image) {
+      return `${parts[0]}/upload/${transformation}/${parts[1]}`;
+    }
 
-// Function to add cropping with a specific aspect ratio
-function applyCropRatio(url, aspectRatio, width = null) {
-  const parts = url.split("/upload/");
-  if (parts.length !== 2) return url; // Ensure URL is valid
+    // Usage
+    croppedUrl = applyCropRatio(props.image, "3:2"); // Square, 500px wide
+    console.log(croppedUrl);
+    // Output: https://res.cloudinary.com/your-cloud-name/image/upload/c_crop,ar_1:1,w_500/sample.jpg
 
-  let transformation = `c_crop,ar_${aspectRatio}`;
-  if (width) transformation += `,w_${width}`;
-
-  return `${parts[0]}/upload/${transformation}/${parts[1]}`;
-}
-
-// Usage
-croppedUrl = applyCropRatio(props.image, "3:2"); // Square, 500px wide
-console.log(croppedUrl);
-// Output: https://res.cloudinary.com/your-cloud-name/image/upload/c_crop,ar_1:1,w_500/sample.jpg
-
-// Set to image src
-// document.querySelector("img").src = croppedUrl;
-}
-
+    // Set to image src
+    // document.querySelector("img").src = croppedUrl;
+  }
 
   let description;
-  let url = 'https:';
+  let url = "https:";
   let link;
-  
+
   // Check if the description includes the URL and there are no spaces
-  if (props.description.includes(url) && props.description.indexOf(' ') <= 0) {
+  if (props.description.includes(url) && props.description.indexOf(" ") <= 0) {
     description = <a href={props.description}>click here</a>;
   } else if (
     props.description.includes(url) &&
-    props.description.indexOf(' ') >= 0
+    props.description.indexOf(" ") >= 0
   ) {
     // Split the description into an array of words
     description = props.description
-      .split(' ')
+      .split(" ")
       .map((word) => {
         // Check if the word includes the URL
         if (word.includes(url)) {
@@ -131,27 +126,25 @@ console.log(croppedUrl);
             </a>
           );
           link = word; // Assign the modified word to the link variable
-          return null
+          return null;
         } else {
           return word; // Explicitly return the word if it doesn't include the URL
         }
-        // return null; // Return null for the case where the word includes the URL (or return it 
+        // return null; // Return null for the case where the word includes the URL (or return it
         // in the first if check. if you dont return it Preetier will be complaining)
       })
       .filter((word) => word !== null) // Filter out null values from the array
-      .join(' '); // Join the modified words back into a string
+      .join(" "); // Join the modified words back into a string
   } else {
     description = props.description; // Use the original description if it doesn't include the URL
   }
   // end of the check for active link section.
 
-
-  // Click on Image to make it take the whole screeen 
+  // Click on Image to make it take the whole screeen
   const imageZoom = (event) => {
-    console.log('Click!!', event.target);
+    console.log("Click image!!", event.target);
     setFullImage((prev) => !prev);
   };
-
 
   let displayContent;
   // if !props.image we are dealing with new post:
@@ -178,18 +171,18 @@ console.log(croppedUrl);
       <div>
         <div
           className={
-            image ? 'event-item__image--background' : 'event-item__image'
+            image ? "event-item__image--background" : "event-item__image"
           }
+          onClick={image ? imageZoom : undefined}
         >
-       
           <img
-            className={image ? 'event-item__full-image' : ''}
+            className={image ? "event-item__full-image" : ""}
             src={croppedUrl}
             alt={props.title}
             onClick={imageZoom}
           />
-              </div>
-       
+        </div>
+
         <div className="event-item__info">
           <Link to="/users">
             <span className="event-item__avatar">

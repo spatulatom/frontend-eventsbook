@@ -43,9 +43,9 @@ body {
 }
 :root{
   /* fecebook blue: */
-  /* --my-color: #1877f2; */
-  --my-color: rgb(212, 227, 111);
-  /* --my-color: rgb(103, 113, 36); */
+  --my-color: #1877f2;
+  /* --my-color: rgb(116, 58, 108); */
+  /* --my-color: rgb(231, 209, 228); */
 }
 .location-hint {
   font-size: 0.9rem;

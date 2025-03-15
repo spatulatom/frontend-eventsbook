@@ -93,7 +93,7 @@
   /* align items  center of its container centers it */
     object-fit: cover;
     width: auto;
-    max-width: 80vw;
+    min-width: 80vw;
     /* height: auto; */
     max-height: 95vh;
     position: relative;
@@ -177,7 +177,3 @@
   font-weight: 500;
 }
 
-.map-container{
-  height: 62vh;
-  width: 100%;
-}

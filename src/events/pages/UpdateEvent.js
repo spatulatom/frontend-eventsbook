@@ -125,7 +125,7 @@ const UpdateEvent = () => {
           <p className="location-hint">
             You can pick any location from this list of cities (case
             insensitive): Athens, Berlin, Cairo, Dublin, Edinburgh, Florence,
-            Geneva, Helsinki, Istanbul, Jakarta, Kathmandu, London, Moscow, New
+            Geneva, Helsinki, Istanbul, Jakarta, Kathmandu, London, Milan, New
             York, Oslo, Paris, Quebec, Rome, Sydney, Tokyo, Ulaanbaatar, Vienna,
             Warsaw, Xi'an, Yokohama, Zurich
           </p>
