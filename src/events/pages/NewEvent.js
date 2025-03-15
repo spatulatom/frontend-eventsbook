@@ -75,10 +75,10 @@ const NewEvent = () => {
         />
         <p className="location-hint">
           You can pick any location from this list of cities (case insensitive):
-          Sydney, New York, London, Paris, Tokyo, Warsaw, Dublin, Rome, Berlin,
-          Oslo, Milan, Istanbul, Copenhagen, Vienna, Jakarta, Kuala Lumpur,
-          Guangzhou, Zurich, Mexico City, Reykjavik, Cairo, Nairobi, Beijing,
-          Dubai, Buenos Aires
+          Athens, Berlin, Cairo, Dublin, Edinburgh, Florence, Geneva, Helsinki,
+          Istanbul, Jakarta, Kathmandu, London, Moscow, New York, Oslo, Paris,
+          Quebec, Rome, Sydney, Tokyo, Ulaanbaatar, Vienna, Warsaw, Xi'an,
+          Yokohama, Zurich
         </p>
         <Input
           id="address"
