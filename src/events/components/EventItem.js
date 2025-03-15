@@ -180,6 +180,8 @@ const PlaceItem = (props) => {
             src={croppedUrl}
             alt={props.title}
             onClick={imageZoom}
+            loading="lazy"
+            
           />
         </div>
 
