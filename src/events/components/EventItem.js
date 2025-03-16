@@ -142,7 +142,20 @@ const PlaceItem = (props) => {
 
   // Click on Image to make it take the whole screeen
   const imageZoom = (event) => {
-    console.log("Click image!!", event.target);
+    event.stopPropagation();
+    // console.log("Click image!!", 'event.target:', event.target, 'event.currentTarget:', event.currentTarget);
+    // Check if we're clicking directly on the image when expanded
+    if (image && event.target.tagName === "IMG") {
+      return; // Do nothing if already expanded and clicking on image
+    }
+
+    console.log(
+      "Click image!!",
+      "event.target:",
+      event.target,
+      "event.currentTarget:",
+      event.currentTarget
+    );
     setFullImage((prev) => !prev);
   };
 
@@ -180,8 +193,8 @@ const PlaceItem = (props) => {
             src={croppedUrl}
             alt={props.title}
             onClick={imageZoom}
+            // style={image ? { pointerEvents: 'none' } : {}}
             loading="lazy"
-            
           />
         </div>
 
