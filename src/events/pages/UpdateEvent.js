@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useContext } from "react";
-import { useParams, useHistory } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 
 import Input from "../../shared/components/FormElements/Input";
 import Button from "../../shared/components/FormElements/Button";
@@ -20,7 +20,7 @@ const UpdateEvent = () => {
   const { isLoading, error, sendRequest, clearError } = useHttpClient();
   const [loadedPlace, setLoadedPlace] = useState();
   const eventId = useParams().eventId;
-  const history = useHistory();
+  const navigate = useNavigate();
 
   const [formState, inputHandler, setFormData] = useForm(
     {
@@ -79,7 +79,7 @@ const UpdateEvent = () => {
       let response = request.place;
       console.log("place", response);
 
-      history.push("/places");
+      navigate("/places");
     } catch (err) {}
   };
 
