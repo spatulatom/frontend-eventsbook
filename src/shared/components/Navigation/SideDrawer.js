@@ -1,10 +1,16 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { CSSTransition } from 'react-transition-group';
+import { useRef } from 'react';
 
 import './SideDrawer.css';
+// https://github.com/reactjs/react-transition-group/issues/918 now useRef is needed
+// The Solution: Using nodeRef
+// The key issue is that React 19 removed findDOMNode, which React Transition Group v4 relies on. 
+// Instead of upgrading to v5, you can use the nodeRef approach that's supported in v4.4.5:
 
 const SideDrawer = props => {
+  const nodeRef = useRef(null);
   const content = (
     // npm install --save react-transition-group
     <CSSTransition
@@ -25,6 +31,7 @@ const SideDrawer = props => {
       // removed from the DOM
       mountOnEnter
       unmountOnExit
+      nodeRef={nodeRef}
     >
       <aside className="side-drawer" onClick={props.onClick}>{props.children}</aside>
     </CSSTransition>

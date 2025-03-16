@@ -1,9 +1,16 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { CSSTransition } from 'react-transition-group';
+import {useRef} from 'react';
 
 import Backdrop from './Backdrop';
 import './Modal.css';
+
+// https://github.com/reactjs/react-transition-group/issues/918
+// https://github.com/reactjs/react-transition-group/issues/918 now useRef is needed
+// The Solution: Using nodeRef
+// The key issue is that React 19 removed findDOMNode, which React Transition Group v4 relies on. 
+// Instead of upgrading to v5, you can use the nodeRef approach that's supported in v4.4.5:
 
 const ModalOverlay = props => {
   const content = (
@@ -43,6 +50,7 @@ const ModalOverlay = props => {
 // basically we need those two components because we want to play a transition here
 // and a backdrop
 const Modal = props => {
+  const nodeRef = useRef(null);
   const modal = (
     <React.Fragment>
       {props.show && <Backdrop color={props.backdropClass} onClick={props.onCancel} />}
@@ -54,6 +62,7 @@ const Modal = props => {
         // appropite classNames will be added in modal.css not like in case
         // of sidedrawwer in index.css
         classNames="modal"
+        nodeRef={nodeRef}
       >
         {/* ...props syntax might look strange but what it does is it takes the props we 
         // pass to Modal that is exported and forwards them to ModalOverlay which is the internal component
