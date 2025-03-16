@@ -70,7 +70,7 @@
 - Render.com for deploying the backend,
 - Cloudinary API for storing photos,
 - Google Maps Platform API for events locations (due to having to use laser card on Google Maps this
-feature is temporarly on hold),
+  feature is temporarly on hold),
 - SendGrid API for password change,
 - Multer middleware library for uploading photos,
 - bcrypt library for hashing passwords,
@@ -123,3 +123,31 @@ As for the CSS styling, Block/Element/Modifier convention is being followed.
 [bootstrap-url]: https://getbootstrap.com
 [jquery.com]: https://img.shields.io/badge/jQuery-0769AD?style=for-the-badge&logo=jquery&logoColor=white
 [jquery-url]: https://jquery.com
+
+## Migration from React Router v5 to v6
+Correctly implemented:
+
+The new route structure with <Routes> and <Route> components
+Using the element prop instead of children components
+Replacing Redirect with Navigate
+Replacing Switch with Routes
+Using the catch-all route with path="_" for fallback navigation
+Key Improvements in Your Updated Code
+✅ Proper imports: import { Routes, Route, Navigate } from 'react-router-dom'
+✅ Route structure: Each route uses element={<Component />} pattern insted of  
+<Route path="/events/new" exact>
+<NewEvent />
+</Route>
+✅ Conditional routes: Different routes for authenticated vs non-authenticated users
+✅ Fallback handling: Using <Route path="_" element={<Navigate to="/allevents" />} />
+Next Steps
+Now that your router is working, you might need to update any components that use router-specific hooks:
+
+Replace useHistory() with useNavigate()
+
+Check any components using location or route params:
+
+useParams() still works but might return data differently
+useLocation() still works similarly
+useRouteMatch() is replaced with useMatch()
+If you were using nested routes, the approach is different in v6 with <Outlet />
