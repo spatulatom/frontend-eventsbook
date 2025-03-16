@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { useHistory } from "react-router-dom";
+import {useNavigate } from "react-router-dom";
 
 import Input from "../../shared/components/FormElements/Input";
 import Button from "../../shared/components/FormElements/Button";
@@ -32,7 +32,7 @@ const NewPost = () => {
     false
   );
 
-  const history = useHistory();
+  const navigate = useNavigate();
 
   const placeSubmitHandler = async (event) => {
     event.preventDefault();
@@ -52,7 +52,7 @@ const NewPost = () => {
         }
       );
 
-      history.push("/");
+      navigate("/");
     } catch (err) {}
   };
 
