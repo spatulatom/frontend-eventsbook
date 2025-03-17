@@ -97,8 +97,6 @@ As for the CSS styling, Block/Element/Modifier convention is being followed.
 
 <!-- ACKNOWLEDGMENTS -->
 
-
-
 ## Migration from React 18 to React 19
 
 Successfully upgraded from React 18.3.1 to React 19.0.0, including React DOM.
@@ -152,26 +150,26 @@ Key Changes:
 ✅ Removed usage of deprecated APIs like findDOMNode
 ✅ Maintained component functionality while improving performance
 
-
 ## Migration from React Router v5 to v6
 
 Correctly implemented:
 
 The new route structure with <Routes> and <Route> components
 Using the element prop instead of children components
+
 - Replacing Redirect with Navigate
 - Replacing Switch with Routes
-Using the catch-all route with path="_" for fallback navigation
-Key Improvements in Your Updated Code
-✅ Proper imports: import { Routes, Route, Navigate } from 'react-router-dom'
-✅ Route structure: Each route uses element={<Component />} pattern insted of  
-<Route path="/events/new" exact>
-<NewEvent />
-</Route>
-✅ Conditional routes: Different routes for authenticated vs non-authenticated users
-✅ Fallback handling: Using <Route path="_" element={<Navigate to="/allevents" />} />
-Next Steps
-Now that your router is working, you might need to update any components that use router-specific hooks:
+  Using the catch-all route with path="_" for fallback navigation
+  Key Improvements in Your Updated Code
+  ✅ Proper imports: import { Routes, Route, Navigate } from 'react-router-dom'
+  ✅ Route structure: Each route uses element={<Component />} pattern insted of  
+  <Route path="/events/new" exact>
+  <NewEvent />
+  </Route>
+  ✅ Conditional routes: Different routes for authenticated vs non-authenticated users
+  ✅ Fallback handling: Using <Route path="_" element={<Navigate to="/allevents" />} />
+  Next Steps
+  Now that your router is working, you might need to update any components that use router-specific hooks:
 
 Replace useHistory() with useNavigate()
 
@@ -182,8 +180,6 @@ useLocation() still works similarly
 useRouteMatch() is replaced with useMatch()
 If you were using nested routes, the approach is different in v6 with <Outlet />
 
-
-
 ## Migration from React Router v6 to v7
 
 Successfully upgraded from React Router DOM v6 to v7.3.0, with key architectural changes.
@@ -191,44 +187,47 @@ Successfully upgraded from React Router DOM v6 to v7.3.0, with key architectural
 ### Steps Completed:
 
 1. **Updated React Router Package**
+
    ```bash
    npm install react-router-dom@latest
 
-2.  **Migrated to Data Router API**
+   ```
+
+2. **Migrated to Data Router API**
 
 Replaced <BrowserRouter> and <Routes> with createBrowserRouter and RouterProvider
 Configured routes using JavaScript objects instead of JSX component
 // Before (React Router v6)
 <BrowserRouter>
-  <Routes>
-    <Route path="/allevents" element={<AllEvents />} />
-  </Routes>
+<Routes>
+<Route path="/allevents" element={<AllEvents />} />
+</Routes>
 </BrowserRouter>
 
 // After (React Router v7)
 const router = createBrowserRouter([
-  {
-    path: "/",
-    element: <Root />,
-    children: [
-      { path: "allevents", element: <AllEvents /> }
-    ]
-  }
+{
+path: "/",
+element: <Root />,
+children: [
+{ path: "allevents", element: <AllEvents /> }
+]
+}
 ]);
 
 <RouterProvider router={router} />
 
 3. **Implemented Layout Pattern with Outlet**
-const Root = () => {
-  return (
-    <>
-      <MainNavigation />
-      <main>
-        <Outlet />
-      </main>
-    </>
-  );
-};
+   const Root = () => {
+   return (
+   <>
+   <MainNavigation />
+   <main>
+   <Outlet />
+   </main>
+   </>
+   );
+   };
 
 4. **Updated Navigation after Form Submissions**
 
@@ -236,23 +235,22 @@ Added explicit navigation with useNavigate() hook after successful operations
 const navigate = useNavigate();
 
 const placeSubmitHandler = async (event) => {
-  event.preventDefault();
-  try {
-    await sendRequest(/* API request details */);
-    navigate("/"); // Explicit navigation
-  } catch (err) {}
-};
-5. **Configured Conditional Routes Based on Authentication**
+event.preventDefault();
+try {
+await sendRequest(/_ API request details _/);
+navigate("/"); // Explicit navigation
+} catch (err) {}
+}; 5. **Configured Conditional Routes Based on Authentication**
 const router = createBrowserRouter([
-  {
-    path: "/",
-    element: <Root />,
-    children: token ? [
-      // Authenticated routes
-    ] : [
-      // Non-authenticated routes
-    ]
-  }
+{
+path: "/",
+element: <Root />,
+children: token ? [
+// Authenticated routes
+] : [
+// Non-authenticated routes
+]
+}
 ]);
 
 Key Benefits:
