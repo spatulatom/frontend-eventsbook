@@ -15,11 +15,13 @@ import { useForm } from "../../shared/hooks/form-hook";
 import { useHttpClient } from "../../shared/hooks/http-hook";
 import { AuthContext } from "../../shared/context/auth-context";
 import "./CreateAccount.css";
+import { useNavigate } from "react-router-dom";
 
 const CreateAccount = () => {
   const auth = useContext(AuthContext);
   // const [isLoginMode, setIsLoginMode] = useState(true);
   const { isLoading, error, sendRequest, clearError } = useHttpClient();
+  const navigate = useNavigate();
 
   const [formState, inputHandler] = useForm(
     {
@@ -61,6 +63,7 @@ const CreateAccount = () => {
       );
       console.log("auth", responseData.name);
       auth.login(responseData.userId, responseData.token, responseData.name);
+      navigate("/allevents");
     } catch (err) {}
   };
 

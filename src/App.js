@@ -1,13 +1,14 @@
 import React from 'react';
 import {
-  BrowserRouter as Router,
-  Route,
-  Routes,
-  Navigate
+  createBrowserRouter,
+  RouterProvider,
+  Navigate,
+  Outlet
 } from 'react-router-dom';
 import { AuthContext } from './shared/context/auth-context';
 import { useAuth } from './shared/hooks/auth-hook';
 
+// ...your imports...
 import Reset from './user/pages/Reset';
 import NewPassword from './user/pages/NewPassword';
 import Users from './user/pages/Users';
@@ -22,59 +23,65 @@ import Login from './user/pages/Login';
 import MainNavigation from './shared/components/Navigation/MainNavigation';
 // import LoadingSpinner from './shared/components/UIElements/LoadingSpinner';
 
-// ...other imports
 
 const App = () => {
   const { token, login, logout, userId, userName } = useAuth();
 
-  let routes;
-  console.log('app.js', userName)
+  // Create a layout component with navigation
+  const Root = () => {
+    return (
+      <>
+        <MainNavigation />
+        <main>
+          <Outlet />
+        </main>
+      </>
+    );
+  };
 
-  if (token) {
-    routes = (
-      <Routes>
-        <Route path="/users" element={<Users />} />
-        <Route path="/:userId/events" element={<UserEvents />} />
-        <Route path="/allevents" element={<AllEvents />} />
-        <Route path="/events/new" element={<NewEvent />} />
-        <Route path="/events/new-post" element={<NewPost />} />
-        <Route path="/events/:eventId" element={<UpdateEvent />} />
-        <Route path="/about" element={<About />} />
-        <Route path="*" element={<Navigate to="/allevents" />} />
-      </Routes>
-    );
-  } else {
-    routes = (
-      <Routes>
-        <Route path="/allevents" element={<AllEvents />} />
-        <Route path="/users" element={<Users />} />
-        <Route path="/:userId/events" element={<UserEvents />} />
-        <Route path="/auth" element={<Login />} />
-        <Route path="/reset" element={<Reset />} />
-        <Route path="/new-password/:token" element={<NewPassword />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="*" element={<Navigate to="/allevents" />} />
-      </Routes>
-    );
-  }
+  // Define routes based on authentication
+  const router = createBrowserRouter([
+    {
+      path: "/",
+      element: <Root />,
+      children: token ? [
+        // Authenticated routes
+        { path: "users", element: <Users /> },
+        { path: ":userId/events", element: <UserEvents /> },
+        { path: "allevents", element: <AllEvents /> },
+        { path: "events/new", element: <NewEvent /> },
+        { path: "events/new-post", element: <NewPost /> },
+        { path: "events/:eventId", element: <UpdateEvent /> },
+        { path: "about", element: <About /> },
+        { path: "*", element: <Navigate to="/allevents" /> },
+        { index: true, element: <Navigate to="/allevents" /> }
+      ] : [
+        // Non-authenticated routes
+        { path: "allevents", element: <AllEvents /> },
+        { path: "users", element: <Users /> },
+        { path: ":userId/events", element: <UserEvents /> },
+        { path: "auth", element: <Login /> },
+        { path: "reset", element: <Reset /> },
+        { path: "new-password/:token", element: <NewPassword /> },
+        { path: "login", element: <Login /> },
+        { path: "*", element: <Navigate to="/allevents" /> },
+        { index: true, element: <Navigate to="/allevents" /> }
+      ]
+    }
+  ]);
 
   return (
     <AuthContext.Provider
       value={{
         isLoggedIn: !!token,
-        token: token,
-        userId: userId,
+        token,
+        userId,
         name: userName,
-        login: login,
-        logout: logout
+        login,
+        logout
       }}
     >
-      <Router>
-        <MainNavigation />
-        <main>
-          {routes}
-        </main>
-      </Router>
+      <RouterProvider router={router} />
     </AuthContext.Provider>
   );
 };

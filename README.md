@@ -158,8 +158,8 @@ Correctly implemented:
 
 The new route structure with <Routes> and <Route> components
 Using the element prop instead of children components
-Replacing Redirect with Navigate
-Replacing Switch with Routes
+- Replacing Redirect with Navigate
+- Replacing Switch with Routes
 Using the catch-all route with path="_" for fallback navigation
 Key Improvements in Your Updated Code
 ✅ Proper imports: import { Routes, Route, Navigate } from 'react-router-dom'
