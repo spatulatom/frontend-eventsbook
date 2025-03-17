@@ -24,8 +24,9 @@
   <ol>
     <li><a href="#about-the-project">About The Project</a></li>
     <li><a href="#built-with">Built With</a></li>
-    <li><a href="#migration-from-react-18-to-react-19">Migration from React 18 to React 19</a></li>
+    <li><a href="#migration-from-react-18-to-react-19">Migration from React 18 to React 19, including React DOM</a></li>
     <li><a href="#migration-from-react-router-v5-to-v6">Migration from React Router v5 to v6</a></li>
+    <li><a href="#migration-from-react-router-v6-to-v7">Migration from React Router v6 to v7</a></li>
     <li><a href="#acknowledgments">Acknowledgments</a></li>
   </ol>
 </details>
@@ -181,6 +182,85 @@ useLocation() still works similarly
 useRouteMatch() is replaced with useMatch()
 If you were using nested routes, the approach is different in v6 with <Outlet />
 
+
+
+## Migration from React Router v6 to v7
+
+Successfully upgraded from React Router DOM v6 to v7.3.0, with key architectural changes.
+
+### Steps Completed:
+
+1. **Updated React Router Package**
+   ```bash
+   npm install react-router-dom@latest
+
+2.  **Migrated to Data Router API**
+
+Replaced <BrowserRouter> and <Routes> with createBrowserRouter and RouterProvider
+Configured routes using JavaScript objects instead of JSX component
+// Before (React Router v6)
+<BrowserRouter>
+  <Routes>
+    <Route path="/allevents" element={<AllEvents />} />
+  </Routes>
+</BrowserRouter>
+
+// After (React Router v7)
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <Root />,
+    children: [
+      { path: "allevents", element: <AllEvents /> }
+    ]
+  }
+]);
+
+<RouterProvider router={router} />
+
+3. **Implemented Layout Pattern with Outlet**
+const Root = () => {
+  return (
+    <>
+      <MainNavigation />
+      <main>
+        <Outlet />
+      </main>
+    </>
+  );
+};
+
+4. **Updated Navigation after Form Submissions**
+
+Added explicit navigation with useNavigate() hook after successful operations
+const navigate = useNavigate();
+
+const placeSubmitHandler = async (event) => {
+  event.preventDefault();
+  try {
+    await sendRequest(/* API request details */);
+    navigate("/"); // Explicit navigation
+  } catch (err) {}
+};
+5. **Configured Conditional Routes Based on Authentication**
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <Root />,
+    children: token ? [
+      // Authenticated routes
+    ] : [
+      // Non-authenticated routes
+    ]
+  }
+]);
+
+Key Benefits:
+✅ Improved performance with the data router architecture
+✅ Enhanced type safety and better TypeScript support
+✅ More explicit navigation control with programmatic redirects
+✅ Better code organization with object-based route definitions
+✅ Support for future React Router features and patterns
 
 ## Acknowledgments
 
